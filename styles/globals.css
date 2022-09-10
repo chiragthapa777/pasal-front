@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .cImg{
+.cImg{
     height: 26rem;
     object-fit: cover;
 }
 .corousel img{
-   width: 100%;
-   padding: 10px 0px;
+    width: 100%;
+    padding: 0px 0px;
 }
 @media (max-width:820px) {
     .cImg{
@@ -21,4 +21,4 @@
             object-fit: cover;
         }
     }
-} */
+}
