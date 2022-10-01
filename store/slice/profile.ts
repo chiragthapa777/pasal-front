@@ -14,6 +14,9 @@ export const ProfileSlice = createSlice({
         },
         setAge:(state, action)=>{
             state.age=action.payload
+        },
+        handleSwal: (state, action)=>{
+            action.payload.fire('Any fool can use a computer')
         }
     },
     extraReducers:{
@@ -30,6 +33,6 @@ export const ProfileSlice = createSlice({
     }
 })
 
-export const {setProfileData, setAge}=ProfileSlice.actions
+export const {setProfileData, setAge, handleSwal}=ProfileSlice.actions
 export const selectProfile=(state : AppState)=>state.profile
 export default ProfileSlice.reducer

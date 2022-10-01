@@ -1,13 +1,16 @@
 import type { NextPage } from 'next'
 import { wrapper } from '../../store'
 import  {product} from "../../data"
+import ProductDetail from "../../components/productPageComponent/ProductDetail";
+import ProductReviewSection from "../../components/productPageComponent/ProductReviewSection";
 
 
 const ProductById: NextPage = (props : any) => {
     console.log(product)
     return (
         <div className={'bg-base-200/30'}>
-            {product.name}
+            <ProductDetail product={product}/>
+            <ProductReviewSection product={product}/>
         </div>
     )
 }

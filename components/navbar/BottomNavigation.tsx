@@ -5,7 +5,7 @@ import Account from "./additional/Account";
 
 function BottomNavigation() {
     return (
-        <div className="btm-nav btm-nav-xs border-t-2">
+        <div className="btm-nav btm-nav-xs border-t-[1px] border-base-content/10 ">
             <button>
                 <Cart/>
             </button>
