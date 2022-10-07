@@ -1,3 +1,169 @@
+export const product={
+    "id": 1,
+    "createdAt": "2022-09-02T14:57:44.203Z",
+    "updatedAt": "2022-09-02T14:57:44.205Z",
+    "name": "pant",
+    "price": 1000,
+    "desc": "This is jeans pant from zara",
+    "groupId": null,
+    "active": true,
+    "quantity": 10,
+    "vendorId": 2,
+    "userId": 7,
+    "unit": "piece",
+    "productTags": [],
+    "vendor": {
+      "id": 2,
+      "createdAt": "2022-09-02T11:59:49.893Z",
+      "updatedAt": "2022-09-02T14:33:22.596Z",
+      "email": "ramsupplier@gmail.com",
+      "name": "Ram supplier",
+      "pan": "2353442355142",
+      "desc": "we sell only branded product",
+      "active": true
+    },
+    "questions": [
+      {
+        "id": 1,
+        "createdAt": "2022-09-10T07:57:27.678Z",
+        "updatedAt": "2022-08-31T01:30:51.963Z",
+        "question": "Is the product still available ?",
+        "answered": true,
+        "userId": 9,
+        "productId": 1,
+        "answers": [
+          {
+            "id": 1,
+            "createdAt": "2022-09-10T08:00:28.752Z",
+            "updatedAt": "2022-09-02T15:14:42.206Z",
+            "answers": "Yes the product is still available",
+            "userId": 7,
+            "questionId": 1,
+            "user": {
+              "id": 7,
+              "name": "chirag thapa",
+              "email": "chirag@gmail.com"
+            }
+          }
+        ],
+        "user": {
+          "id": 9,
+          "name": "chirag thapa",
+          "email": "chirag3@gmail.com"
+        }
+      },
+      {
+        "id": 2,
+        "createdAt": "2022-09-10T07:57:27.678Z",
+        "updatedAt": "2022-08-31T01:30:51.963Z",
+        "question": "Can we get the product in red collor ?",
+        "answered": false,
+        "userId": 10,
+        "productId": 1,
+        "answers": [],
+        "user": {
+          "id": 10,
+          "name": "chirag thapa",
+          "email": "chirag5@gmail.com"
+        }
+      },
+      {
+        "id": 3,
+        "createdAt": "2022-10-02T16:09:25.348Z",
+        "updatedAt": "2022-10-02T16:09:25.445Z",
+        "question": "is it avaible in big size?",
+        "answered": false,
+        "userId": 7,
+        "productId": 1,
+        "answers": [],
+        "user": {
+          "id": 7,
+          "name": "chirag thapa",
+          "email": "chirag@gmail.com"
+        }
+      }
+    ],
+    "images": [
+      {
+        "id": 1,
+        "createdAt": "2022-09-10T08:09:42.697Z",
+        "updatedAt": "2022-08-31T01:30:51.963Z",
+        "url": "https://www.gyapu.com/public/780-1024/files/76DAF89904FD354-16035BEIGE%20(4).jpg",
+        "public_url": "https://www.gyapu.com/public/780-1024/files/76DAF89904FD354-16035BEIGE%20(4).jpg",
+        "productId": 1,
+        "desc": "pant"
+      },
+      {
+        "id": 2,
+        "createdAt": "2022-09-10T08:09:42.697Z",
+        "updatedAt": "2022-08-31T01:30:51.963Z",
+        "url": "https://www.gyapu.com/public/780-1024/files/9799C7D4AB70AEA-16035BLACK%20(1).jpg",
+        "public_url": "https://www.gyapu.com/public/780-1024/files/9799C7D4AB70AEA-16035BLACK%20(1).jpg",
+        "productId": 1,
+        "desc": "pant"
+      },
+      {
+        "id": 3,
+        "createdAt": "2022-09-10T08:09:42.697Z",
+        "updatedAt": "2022-08-31T01:30:51.963Z",
+        "url": "https://www.gyapu.com/public/780-1024/files/9799C7D4AB70AEA-16035BLACK%20(1).jpg",
+        "public_url": "https://www.gyapu.com/public/780-1024/files/9799C7D4AB70AEA-16035BLACK%20(1).jpg",
+        "productId": 1,
+        "desc": "pant"
+      }
+    ],
+    "reviews": [
+      {
+        "id": 3,
+        "createdAt": "2022-09-10T07:55:13.556Z",
+        "updatedAt": "2022-08-31T01:30:51.963Z",
+        "rating": 4,
+        "feedback": "This is a very nice product i love it",
+        "userId": 13,
+        "productId": 1,
+        "user": {
+          "id": 13,
+          "name": "chirag thapa",
+          "email": "chirag10@gmail.com"
+        }
+      },
+      {
+        "id": 5,
+        "createdAt": "2022-10-01T09:46:06.843Z",
+        "updatedAt": "2022-10-01T09:46:06.845Z",
+        "rating": 1,
+        "feedback": "i like the product",
+        "userId": 7,
+        "productId": 1,
+        "user": {
+          "id": 7,
+          "name": "chirag thapa",
+          "email": "chirag@gmail.com"
+        }
+      },
+      {
+        "id": 6,
+        "createdAt": "2022-10-01T15:35:42.139Z",
+        "updatedAt": "2022-10-01T15:35:42.229Z",
+        "rating": 5,
+        "feedback": "ohh wowo",
+        "userId": 7,
+        "productId": 1,
+        "user": {
+          "id": 7,
+          "name": "chirag thapa",
+          "email": "chirag@gmail.com"
+        }
+      }
+    ],
+    "_count": {
+      "reviews": 3,
+      "questions": 3
+    },
+    "averageRating": 4
+  }
+
+
 export const productList=[
     {
         "id": 1,
@@ -278,136 +444,3 @@ export const productList=[
         }
     },
 ]
-
-export const product ={
-        id: 1,
-        createdAt: "2022-09-02T14:57:44.203Z",
-        updatedAt: "2022-09-02T14:57:44.205Z",
-        name: "pant",
-        price: 1000,
-        desc: "This is jeans pant from zara",
-        groupId: null,
-        active: true,
-        quantity: 10,
-        vendorId: 2,
-        userId: 7,
-        productTags: [],
-        vendor: {
-            id: 2,
-            createdAt: "2022-09-02T11:59:49.893Z",
-            updatedAt: "2022-09-02T14:33:22.596Z",
-            email: "ramsupplier@gmail.com",
-            name: "Ram supplier",
-            pan: "2353442355142",
-            desc: "we sell only branded product",
-            active: true
-        },
-        questions: [
-            {
-                id: 1,
-                createdAt: "2022-09-10T07:57:27.678Z",
-                updatedAt: "2022-08-31T01:30:51.963Z",
-                question: "Is the product still available ?",
-                answered: true,
-                userId: 9,
-                productId: 1,
-                answers: [
-                    {
-                        id: 1,
-                        createdAt: "2022-09-10T08:00:28.752Z",
-                        updatedAt: "2022-09-02T15:14:42.206Z",
-                        answers: "Yes the product is still available",
-                        userId: 7,
-                        questionId: 1,
-                        user: {
-                            id: 7,
-                            createdAt: "2022-08-27T15:39:20.848Z",
-                            updatedAt: "2022-09-02T14:54:42.506Z",
-                            email: "chirag@gmail.com",
-                            password: "$2b$10$hPJP3pyC5xeyZPws2IMwsO0.FBpqlZYL2ayFAbC6WBoRrU7jxvwFi",
-                            name: "chirag thapa",
-                            role: "USER",
-                            number: "49283465",
-                            vendorId: 2
-                        }
-                    }
-                ]
-            },
-            {
-                id: 2,
-                createdAt: "2022-09-10T07:57:27.678Z",
-                updatedAt: "2022-08-31T01:30:51.963Z",
-                question: "Can we get the product in red collor ?",
-                answered: false,
-                userId: 10,
-                productId: 1,
-                answers: []
-            }
-        ],
-        images: [
-            {
-                id: 1,
-                createdAt: "2022-09-10T08:09:42.697Z",
-                updatedAt: "2022-08-31T01:30:51.963Z",
-                url: "https://www.gyapu.com/public/780-1024/files/76DAF89904FD354-16035BEIGE%20(4).jpg",
-                public_url: "https://www.gyapu.com/public/780-1024/files/76DAF89904FD354-16035BEIGE%20(4).jpg",
-                productId: 1,
-                desc: "pant"
-            },
-            {
-                id: 2,
-                createdAt: "2022-09-10T08:09:42.697Z",
-                updatedAt: "2022-08-31T01:30:51.963Z",
-                url: "https://www.gyapu.com/public/780-1024/files/9799C7D4AB70AEA-16035BLACK%20(1).jpg",
-                public_url: "https://www.gyapu.com/public/780-1024/files/9799C7D4AB70AEA-16035BLACK%20(1).jpg",
-                productId: 1,
-                desc: "pant"
-            }
-        ],
-        reviews: [
-            {
-                id: 3,
-                createdAt: "2022-09-10T07:55:13.556Z",
-                updatedAt: "2022-08-31T01:30:51.963Z",
-                rating: 4,
-                feedback: "This is a very nice product i love it",
-                userId: 13,
-                productId: 1,
-                user: {
-                    id: 13,
-                    createdAt: "2022-08-31T01:30:29.218Z",
-                    updatedAt: "2022-08-31T01:30:29.219Z",
-                    email: "chirag10@gmail.com",
-                    password: "$2b$10$Ljv6mMYw2aXbWf61wwbMe.1dBUsRTweNDDsrTFo1DKllLva4aj87W",
-                    name: "chirag thapa",
-                    role: "USER",
-                    number: null,
-                    vendorId: null
-                }
-            },
-            {
-                id: 4,
-                createdAt: "2022-09-10T07:55:13.556Z",
-                updatedAt: "2022-08-31T01:30:51.963Z",
-                rating: 5,
-                feedback: "As shown in the picture happy to use the product",
-                userId: 12,
-                productId: 1,
-                user: {
-                    id: 12,
-                    createdAt: "2022-08-30T03:20:30.885Z",
-                    updatedAt: "2022-08-30T03:20:30.885Z",
-                    email: "chirag0@gmail.com",
-                    password: "$2b$10$fpsPoMWSzuoO0XmQfisckOLpRcJU67O4cDrJgCElx9EKTi2pBsC06",
-                    name: "chirag thapa",
-                    role: "ADMIN",
-                    number: null,
-                    vendorId: null
-                }
-            }
-        ],
-        _count: {
-            reviews: 2,
-            questions: 2
-        }
-    }

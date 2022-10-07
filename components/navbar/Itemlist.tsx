@@ -1,10 +1,19 @@
-import React from "react";
+import React,{useState} from "react";
 import {MdCategory, MdStore, MdDashboard, MdFilterAlt, MdShoppingBasket} from "react-icons/md";
 import Link from "next/link";
+import Filter from "../helper/modal/Filter";
 
 export default function Itemlist() {
+    // const [isOpen, setIsOpen] = useState(false)
+    // const handlefilter=()=>{
+    //     setIsOpen(!isOpen)
+    // }
     return (
         <>
+{/* Modals */}
+        {/* <Filter isOpen={isOpen} setIsOpen={setIsOpen}  /> */}
+{/* modals */}
+
             <Link href={"/"}>
                 <li className={"md:hidden mx-auto mb-2 text-2xl font-bold bg-primary text-primary-content w-full rounded-md hover:bg-primary-focus "}>
                     <h1 className={'mx-auto'}>पसल</h1>

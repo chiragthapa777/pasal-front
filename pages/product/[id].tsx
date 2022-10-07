@@ -3,6 +3,8 @@ import { wrapper } from '../../store'
 import  {product} from "../../data"
 import ProductDetail from "../../components/productPageComponent/ProductDetail";
 import ProductReviewSection from "../../components/productPageComponent/ProductReviewSection";
+import ProductDescription from '../../components/productPageComponent/ProductDescription';
+import ProductQnaSection from '../../components/productPageComponent/ProductQnaSection';
 
 
 const ProductById: NextPage = (props : any) => {
@@ -10,7 +12,9 @@ const ProductById: NextPage = (props : any) => {
     return (
         <div className={'bg-base-200/30'}>
             <ProductDetail product={product}/>
+            {/* <ProductDescription product={product}/> */}
             <ProductReviewSection product={product}/>
+            <ProductQnaSection />
         </div>
     )
 }

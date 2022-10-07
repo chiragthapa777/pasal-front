@@ -65,7 +65,7 @@ export default function Navbar({ children, theme, settheme }: any) {
             <ThemeSwap theme={theme} settheme={settheme} />
           </div>
         </div>
-        <div className="flex-none hidden lg:block -z-40">
+        <div className="flex-none hidden md:block -z-40">
           <ul className="menu menu-horizontal bg-neutral text-neutral-content w-full">
             {/* <!-- Navbar menu content here --> */}
             <Itemlist />

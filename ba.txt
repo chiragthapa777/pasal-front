@@ -1,100 +1,78 @@
-import React from "react";
-import Itemlist from "./Itemlist";
-import Dropdown from "./Dropdown";
+import React, { useState } from "react";
+import ProductImageCorousel from "./ProductImageCorousel";
 import {
-  MdOutlineMenu,
-  MdSearch,
-  MdShoppingCart,
-  MdOutlineFavorite,
-  MdAccountCircle
+	MdStore,
+	MdShoppingCart,
+	MdOutlineFavorite,
+	MdAttachMoney,
 } from "react-icons/md";
-import Footer from "../footer/Footer";
-export default function Navbar({ children }: any) {
-  return (
-    <div className="drawer text-sm md:text-md">
-      <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col">
-        <div className="w-full navbar flex justify-between  bg-indigo-600 ">
-          {/* logo and hamburger */}
-          <div>
-            <div className=" lg:hidden">
-              <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
-                <MdOutlineMenu className="text-3xl sm:text-4xl text-white" />
-              </label>
-            </div>
-            <div className="flex-1 md:px-2 md:mx-2 text-4xl font-normal md:font-bold text-white"> पसल </div>
-          </div>
-          {/* serach bar */}
-          <div className="form-control text-xs">
-            <div className="input-group">
-              <input
-                type="text"
-                placeholder="Search…"
-                className="input input-bordered "
-              />
-              <button className="btn btn-square">
-                <MdSearch className="text-3xl text-white" />
-              </button>
-            </div>
-          </div>
-          {/*right part*/}
-          <div className="mr-3 mt-1 hidden md:block">
-            {/* cart */}
-            <div className="tooltip tooltip-bottom mr-5 " data-tip="Cart ">
-              <div className="indicator my-auto">
-                <span className="indicator-item badge badge-secondary rounded-full bg-white mt-1">
-                  {" "}
-                  10
-                </span>
-                <div className="grid  place-items-center p-2 rounded-full  hover:bg-indigo-500">
-                  <MdShoppingCart className="text-3xl text-white" />
-                </div>
-              </div>
-            </div>
-            {/* wishlist */}
-            <div className="tooltip tooltip-bottom mr-5" data-tip="WishList  ">
-              <div className="indicator">
-                <span className="indicator-item badge badge-secondary rounded-full bg-white mt-1">
-                  {" "}
-                  10
-                </span>
-                <div className="grid place-items-center p-2 rounded-full  hover:bg-indigo-500">
-                  <MdOutlineFavorite className="text-3xl text-white" />
-                </div>
-              </div>
-            </div>
-            {/* profile */}
-            <div className="dropdown dropdown-end dropdown-hover rounded-full hover:bg-indigo-500">
-              <label tabIndex={0}>
-              <MdAccountCircle className="text-5xl rounded-full p-2 text-white" />
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <Dropdown />
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="flex-none hidden lg:block">
-          <ul className="menu menu-horizontal bg-zinc-700 text-white w-full">
-            {/* <!-- Navbar menu content here --> */}
-            <Itemlist />
-          </ul>
-        </div>
-        <>
-        {children}
-        <Footer />
-        </>
-      </div>
-      <div className="drawer-side">
-        <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
-        <ul className="menu p-4 overflow-y-auto w-80 bg-base-100">
-          {/* <!-- Sidebar content here --> */}
-          <Itemlist />
-        </ul>
-      </div>
-    </div>
-  );
+import Quantity from "../helper/Quantity";
+import { product } from "../../data";
+import ReactStars from "react-stars";
+
+function ProductDetail(props: any) {
+	  const [quantity, setquantity] = useState(1);
+	  const { product: any } = props;
+	const ratingChanged = (newRating: number) => {
+		console.log(newRating);
+	};
+	return (
+		<div className={"container mx-auto lg:w-48"}>
+			<div className={"flex flex-col sm:flex-row justify-start "}>
+				<div className={"w-full sm:w-[50%] p-0 sm:p-2 md:p-10"}>
+					{/*    image    */}
+					<div className={" "}>
+						<ProductImageCorousel imagesList={product.images} />
+					</div>
+				</div>
+				<div className={"p-1 sm:p-2 md:p-10 w-full sm:w-[50%] sm:m-1"}>
+					{/*     detail      */}
+					<h1 className="text-primary font-bold text-2xl sm:text-3xl">
+						Men winter pant fur inside
+					</h1>
+					<div className="flex justify-between p-1 mb-3">
+						<ReactStars
+							count={5}
+							value={1}
+							onChange={ratingChanged}
+							half={true}
+							edit={true}
+							size={24}
+						/>
+						<div className="text-xs my-auto">
+							13 reviews | 3 questions
+						</div>
+					</div>
+					<div className="divider p-0 m-0 "></div>
+					<div className="flex justify-between m-1 my-3">
+						<button className="btn btn-primary btn-xs">
+							<MdStore className="mr-2 text-lg" /> Zara
+						</button>
+					</div>
+
+					<div className="divider p-0 m-0"></div>
+					<p className="font-bold text-3xl m-1">
+						<span>Rs.</span>6293
+					</p>
+					<Quantity max={10} min={1} />
+					<div className="m-3">
+						<div className="flex mb-2">
+							<button className="btn btn-primary btn-outline flex-1 mr-2">
+								<MdShoppingCart className="mr-2 text-2xl" /> Add
+								to cart
+							</button>
+							<button className="btn btn-primary btn-outline flex-none text-2xl">
+								<MdOutlineFavorite />
+							</button>
+						</div>
+						<button className="btn btn-primary btn-outline btn-block">
+							<MdAttachMoney className="mr-2 text-2xl" /> Buy now
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
+
+export default ProductDetail;
