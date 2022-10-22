@@ -5,10 +5,14 @@ import {
 	MdShoppingCart,
 	MdOutlineFavorite,
 	MdAttachMoney,
+	MdHomeFilled,
+	MdShoppingBasket
 } from "react-icons/md";
 import Quantity from "../helper/Quantity";
 import { product } from "../../data";
 import ReactStars from "react-stars";
+import commaNumber from "comma-number";
+import Link from "next/link";
 
 function ProductDetail(props: any) {
 	  const [quantity, setquantity] = useState(1);
@@ -18,6 +22,23 @@ function ProductDetail(props: any) {
 	};
 	return (
 		<div className={"container mx-auto lg:w-5/6"}>
+			{/* upper navigation */}
+			<div className="text-sm breadcrumbs text-info">
+				<ul className="lg:max-w-[1200px] container">
+					<li className="cursor-pointer hover:underline">
+						<MdHomeFilled className="mr-1 my-auto" />
+						<Link href="/" className="my-auto">
+							Home
+						</Link>
+					</li>
+					<li className="cursor-pointer hover:underline">
+						<MdShoppingBasket className="mr-1 my-auto" />
+						<div className="my-auto">
+							Product
+						</div>
+					</li>
+				</ul>
+			</div>
 			<div className={"flex flex-col sm:flex-row justify-start "}>
 				<div className={"w-full sm:w-[50%] p-0 sm:p-2 "}>
 					{/*    image    */}
@@ -36,7 +57,7 @@ function ProductDetail(props: any) {
 							value={1}
 							onChange={ratingChanged}
 							half={true}
-							edit={true}
+							edit={false}
 							size={24}
 						/>
 						<div className="text-xs my-auto">
@@ -52,21 +73,28 @@ function ProductDetail(props: any) {
 
 					<div className="divider p-0 m-0"></div>
 					<p className="font-bold text-3xl m-1">
-						<span>Rs.</span>6293
+						<span className="text-xl text-info">(10% off)</span>
+						{" "}
+						<span className="line-through text-info text-2xl"><span>Rs.</span>{commaNumber(6000)}</span>
+						{" "}
+						<span><span>Rs.</span>{commaNumber(5000)} </span>
+						
 					</p>
 					<Quantity max={10} min={1} />
 					<div className="m-3">
 						<div className="flex mb-2">
 							<button className="btn btn-primary btn-outline flex-1 mr-2">
-								<MdShoppingCart className="mr-2 text-2xl" /> Add
-								to cart
+								<MdShoppingCart className="mr-2 text-2xl" />
+								<p className="text-lg">Add to cart</p> 
 							</button>
 							<button className="btn btn-primary btn-outline flex-none text-2xl">
 								<MdOutlineFavorite />
 							</button>
 						</div>
 						<button className="btn btn-primary btn-outline btn-block">
-							<MdAttachMoney className="mr-2 text-2xl" /> Buy now
+							<MdAttachMoney className="mr-2 text-2xl" /> 
+							<p className="text-lg">Buy now</p> 
+
 						</button>
 					</div>
 				</div>

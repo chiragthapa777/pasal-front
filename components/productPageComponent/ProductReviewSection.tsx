@@ -5,13 +5,14 @@ function ProductReviewSection(props: any) {
 	const { product: any } = props;
 	return (
 		<div className="container mx-auto lg:w-5/6 border border-base-content/10 my-2">
-			<div className="collapse ">
-				<input type="checkbox" className="peer" />
-				<div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content text-xl  flex justify-start items-center">
-					Product Review & Rating
+			<div className="collapse">
+				<input type="checkbox" className="peer " />
+				<div className="collapse-title border border-primary text-primary font-bold p-1 sm:p-4 text-md sm:text-lg lg:text-xl  flex justify-between items-center">
+					<p>Product Review & Rating</p>
+					<button className="btn btn-sm btn-primary z-30">Add Review</button>
 				</div>
 				<div className="collapse-content">
-					<div className="review border border-base-content/10 mt-4  p-1">
+					<div className="review border border-base-content/10 mt-4  p-1 bg-base-200 rounded-sm">
 						<h2 className="font-bold underline">Ram thapa</h2>
 						<div className="flex justify-start items-center">
 							<ReactStars
@@ -30,7 +31,7 @@ function ProductReviewSection(props: any) {
 							laborum?
 						</p>
 					</div>
-					<div className="review border border-base-content/10 mt-2 p-1">
+					<div className="review border border-base-content/10 mt-2 p-1 bg-base-200 rounded-sm	">
 						<h2 className="font-bold underline">Ram thapa</h2>
 						<div className="flex justify-start items-center">
 							<ReactStars

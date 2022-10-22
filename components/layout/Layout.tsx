@@ -14,7 +14,7 @@ export default function Layout({ children }: any) {
   return (
     <div
       className="font-mono min-h-screen flex flex-col justify-between overflow-x-hidden"
-      data-theme={theme ? "winter" : "night"}
+      data-theme={theme ? "light" : "dark"}
     >
       <Navbar children={children} theme={theme} settheme={settheme} />
     </div>

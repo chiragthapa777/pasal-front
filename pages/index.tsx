@@ -26,7 +26,7 @@ const Index: NextPage = (props : any) => {
         dispatch(handleSwal(MySwal))
     }
   return (
-   <div className={'bg-base-300/50'}>
+   <div className={''}>
     {/*<Hero />*/}
         <Corousel/>
          <ProductGroup header={"New Arrivals"} productList={productList}/>

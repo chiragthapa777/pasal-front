@@ -10,7 +10,7 @@ import ProductQnaSection from '../../components/productPageComponent/ProductQnaS
 const ProductById: NextPage = (props : any) => {
     console.log(product)
     return (
-        <div className={'bg-base-200/30'}>
+        <div className={''}>
             <ProductDetail product={product}/>
             {/* <ProductDescription product={product}/> */}
             <ProductReviewSection product={product}/>
