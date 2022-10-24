@@ -1,8 +1,14 @@
 // components/layout.js
 import { useState, useEffect } from "react";
 import Navbar from "../navbar/Navbar";
+import { useSelector, useDispatch } from 'react-redux'
+import { setAge } from "../../store/slice/profile";
 
 export default function Layout({ children }: any) {
+  const dispatch=useDispatch()
+  const changeAge=()=>{
+    dispatch(setAge(10))
+  }
   const [theme, settheme] = useState(true);
   useEffect(() => {
     if(window.localStorage.getItem("lightMode")){

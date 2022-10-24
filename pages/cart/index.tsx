@@ -4,8 +4,14 @@ import { IoBagCheckSharp } from "react-icons/io5";
 import commaNumber from "comma-number";
 import Link from "next/link";
 import { MdHomeFilled, MdShoppingCart } from "react-icons/md";
+import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 
 export default function cart() {
+	const router = useRouter();
+	const handleCheckout = () => {
+		router.push("/checkout/shipping")
+	};
 	return (
 		<div className={"CartCss lg:max-w-[1200px] container mx-auto p-1"}>
 			{/* upper navigation */}
@@ -26,13 +32,11 @@ export default function cart() {
 				</ul>
 			</div>
 			<section className="cartWrapper flex flex-col  items-start content-start lg:flex-row w-full">
-				<div className="itemsArray w-full lg:w-[70%] mx-1">
+				<div className="itemsArray w-full lg:w-[70%] mx-1 md:mr-3">
 					<h1 className="font-extrabold text-3xl  py-1">
 						My Carts
 						<div className="divider p-0 m-0 "></div>
 					</h1>
-					<CartItem />
-					<CartItem />
 					<CartItem />
 					<CartItem />
 				</div>
@@ -63,7 +67,7 @@ export default function cart() {
 				</div>
 			</section>
 			<div className="cartButtons flex justify-center m-2">
-				<button className="btn btn-primary btn-md btn-block sm:btn-wide sm:px-12">
+				<button className="btn btn-primary btn-md btn-block sm:btn-wide sm:px-12" onClick={handleCheckout}>
 					{" "}
 					<IoBagCheckSharp className="mr-2 text-xl sm:text-2xl" />{" "}
 					Checkout{" "}

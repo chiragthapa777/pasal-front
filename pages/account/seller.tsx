@@ -4,6 +4,7 @@ import {
 	MdHomeFilled,
 	MdManageAccounts,
 	MdStoreMallDirectory,
+	MdNavigateNext
 } from "react-icons/md";
 import AccountNav from "../../components/account/AccountNav";
 
@@ -88,7 +89,7 @@ export default function seller({}: Props) {
 								className="textarea  textarea-bordered  input-wide w-full md:w-[70%]"
 							/>
 						</div>
-            <button className="btn btn-sm mt-3 btn-info">Next</button>
+            <button className="btn btn-sm mt-3 btn-info">Next <MdNavigateNext className="text-lg" /></button>
 					</div>
 				</div>
 			</section>

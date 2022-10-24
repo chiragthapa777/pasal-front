@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import {MdOutlineFavorite, MdShoppingCart} from "react-icons/md";
 
@@ -10,7 +11,9 @@ function Favorite() {
                     10
                 </span>
                 <div className="grid  place-items-center p-2 rounded-full  hover:bg-base-200">
+                    <Link href={"/account/wishlist"}>
                     <MdOutlineFavorite className="text-2xl md:text-3xl text-base-content"/>
+                    </Link>
                 </div>
             </div>
         </div>

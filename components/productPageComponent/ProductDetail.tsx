@@ -39,7 +39,7 @@ function ProductDetail(props: any) {
 					</li>
 				</ul>
 			</div>
-			<div className={"flex flex-col sm:flex-row justify-start "}>
+			<div className={"flex flex-col sm:flex-row justify-start m-1"}>
 				<div className={"w-full sm:w-[50%] p-0 sm:p-2 "}>
 					{/*    image    */}
 					<div className={" "}>
@@ -81,7 +81,7 @@ function ProductDetail(props: any) {
 						
 					</p>
 					<Quantity max={10} min={1} />
-					<div className="m-3">
+					<div className="my-2">
 						<div className="flex mb-2">
 							<button className="btn btn-primary btn-outline flex-1 mr-2">
 								<MdShoppingCart className="mr-2 text-2xl" />
