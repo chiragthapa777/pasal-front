@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import React from 'react'
-import GroupList from '../../components/vendor/GroupList'
+import GroupList from '../../components/vendor/group/GroupList'
+import GroupModal from '../../components/vendor/group/GroupModal'
 import VendorNav from '../../components/vendor/VendorNav'
 
 type Props = {}
@@ -8,7 +9,7 @@ type Props = {}
 export default function productgroup({}: Props) {
     const router = useRouter()
     const handleAddProductGroup =()=>{
-        router.push("addproductGroup")
+        router.push("addproductgroup")
     }
   return (
     <>
@@ -18,7 +19,7 @@ export default function productgroup({}: Props) {
 					Product Group
 				</h1>
                 <div className="optionbar p-2 flex">
-                    <button className="btn btn-sm btn-info mx-1" onClick={handleAddProductGroup}>Add new group</button>
+                  <GroupModal buttonText={'Add Group'} title={'Add Group'}/>
                 </div>
                 <GroupList />
 			</div>

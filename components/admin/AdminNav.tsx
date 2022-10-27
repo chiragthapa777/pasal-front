@@ -1,17 +1,15 @@
-import Link from "next/link";
-import React from "react";
-import { MdHomeFilled, MdArrowDropDown } from "react-icons/md";
+import Link from 'next/link'
+import React from 'react'
+import { MdArrowDropDown, MdHomeFilled } from 'react-icons/md'
 
-type Props = {
-	basePath: string;
-};
+type Props = {}
 
-export default function VendorNav({ basePath }: Props) {
-	return (
-		<div className="w-full border-b bg-base-100">
+export default function AdminNav({basePath}: any) {
+  return (
+    <div className="w-full border-b bg-base-100">
 			<div className="flex justify-between py-2 container lg:max-w-[1300px] mx-auto">
 				<h1 className="my-auto text-primary text-3xl font-extrabold tracking-tighter">
-					Ram Supplier
+					Admin Control
 				</h1>
 				<div className="dropdown dropdown-end my-auto">
 					<label
@@ -26,18 +24,15 @@ export default function VendorNav({ basePath }: Props) {
 						className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 border"
 					>
 						<li className="border-b">
-							<Link href={"/vendor/product"}>Product</Link>
+							<Link href={"/admin/orders"}>Orders</Link>
 						</li>
 						<li className="border-b">
-							<Link href={"/vendor/productgroup"}>
-								Product Group
+							<Link href={"/admin/vendors"}>
+								Vendors
 							</Link>
 						</li>
-						<li className="border-b">
-							<Link href={"/vendor/orderItems"}>Order Items</Link>
-						</li>
 						<li className="">
-							<Link href={"/vendor/questions"}>Questions</Link>
+							<Link href={"/vendor/payments"}>Payments</Link>
 						</li>
 					</ul>
 				</div>
@@ -52,14 +47,14 @@ export default function VendorNav({ basePath }: Props) {
 							</Link>
 						</li>
 						<li className="cursor-pointer hover:underline">
-							<Link href="/vendor" className="my-auto">
-								Vendor
+							<Link href="/admin" className="my-auto">
+								Admin
 							</Link>
 						</li>
 						{basePath != "/" && (
 							<li className="cursor-pointer hover:underline">
 								<Link
-									href={`/vendor/${basePath}`}
+									href={`/admin/${basePath}`}
 									className="my-auto"
 								>
 									{basePath}
@@ -70,5 +65,5 @@ export default function VendorNav({ basePath }: Props) {
 				</div>
 			</div>
 		</div>
-	);
+  )
 }

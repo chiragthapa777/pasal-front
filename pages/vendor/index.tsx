@@ -1,5 +1,5 @@
 import React from 'react'
-import Dashboard from '../../components/vendor/Dashboard'
+import Dashboard from '../../components/vendor/dashboard/Dashboard'
 import VendorNav from '../../components/vendor/VendorNav'
 
 type Props = {}

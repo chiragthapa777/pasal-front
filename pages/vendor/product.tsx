@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
-import ProductFilter from "../../components/vendor/productFilter";
-import ProductList from "../../components/vendor/ProductList";
+import ProductFilter from "../../components/vendor/product/ProductFilter";
+import ProductList from "../../components/vendor/product/ProductList";
 import VendorNav from "../../components/vendor/VendorNav";
 
 type Props = {};

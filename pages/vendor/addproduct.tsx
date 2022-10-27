@@ -1,5 +1,5 @@
 import React from "react";
-import ProductForm from "../../components/vendor/ProductForm";
+import ProductForm from "../../components/vendor/product/ProductForm";
 import VendorNav from "../../components/vendor/VendorNav";
 
 type Props = {};

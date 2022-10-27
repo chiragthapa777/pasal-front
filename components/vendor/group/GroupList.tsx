@@ -8,17 +8,11 @@ export default function GroupList() {
 				<thead>
 					<tr className="">
 						<th className="border py-3 px-2 bg-base-200">SN </th>
-						<th className="border py-3 px-2 bg-base-200">Image</th>
 						<th className="border py-3 px-2 bg-base-200">Name</th>
-						<th className="border py-3 px-2 bg-base-200">
-							Price (Rs)
-						</th>
-						<th className="border py-3 px-2 bg-base-200">Stock</th>
-						<th className="border py-3 px-2 bg-base-200">Group</th>
-						<th className="border py-3 px-2 bg-base-200">Active</th>
 						<th className="border py-3 px-2 bg-base-200">
 							Addded At
 						</th>
+						<th className="border py-3 px-2 bg-base-200">Created At</th>
 						<th className="border py-3 px-2 bg-base-200">Action</th>
 					</tr>
 				</thead>

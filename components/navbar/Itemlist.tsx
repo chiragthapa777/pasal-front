@@ -5,6 +5,7 @@ import {
 	MdDashboard,
 	MdFilterAlt,
 	MdShoppingBasket,
+	MdAdminPanelSettings
 } from "react-icons/md";
 import Link from "next/link";
 import Filter from "../helper/modal/Filter";
@@ -62,6 +63,18 @@ export default function Itemlist() {
 					<a>
 						<MdDashboard className={" text-2xl"} />
 						My Store
+					</a>
+				</li>
+			</Link>
+			<Link href={"/admin"}>
+				<li
+					className={
+						"md:hover:bg-primary md:hover:text-primary-content"
+					}
+				>
+					<a>
+						<MdAdminPanelSettings className={" text-2xl"} />
+						Admin
 					</a>
 				</li>
 			</Link>
