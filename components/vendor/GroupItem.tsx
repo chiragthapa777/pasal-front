@@ -1,11 +1,11 @@
-import commaNumber from "comma-number";
-import moment from "moment";
-import React from "react";
+import commaNumber from 'comma-number';
+import moment from 'moment';
+import React from 'react'
 
-type Props = {};
+type Props = {}
 
-export default function ProductItem({}: Props) {
-	const handleSelect = () => {
+export default function GroupItem({}: Props) {
+    const handleSelect = () => {
 		console.log("select");
 	};
 	return (
@@ -25,7 +25,7 @@ export default function ProductItem({}: Props) {
 			<td className="border p-2 text-center">
 				<input type="checkbox" checked={true} className="checkbox" />
 			</td>
-			<td className="border p-2 text-cent">{moment("2022-10-22T12:01:25.263Z").format("YYYY-MM-DD")}</td>
+			<td className="border p-2 text-center">{moment("2022-10-22T12:01:25.263Z").format("YYYY-MM-DD")}</td>
 			<td className="border p-2 text-center">
 				<button className="btn btn-xs btn-success mr-1">view</button>
 				<button

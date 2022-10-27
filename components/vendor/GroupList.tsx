@@ -1,11 +1,9 @@
-import React from "react";
-import ProductItem from "./ProductItem";
+import React from 'react'
+import GroupItem from './GroupItem'
 
-type Props = {};
-
-export default function ProductList({}: Props) {
-	return (
-		<div className="overflow-x-auto ">
+export default function GroupList() {
+  return (
+    <div className="overflow-x-auto ">
 			<table className=" w-full border-collapse ">
 				<thead>
 					<tr className="">
@@ -25,18 +23,12 @@ export default function ProductList({}: Props) {
 					</tr>
 				</thead>
 				<tbody>
-					<ProductItem />
-					<ProductItem />
-					<ProductItem />
-					<ProductItem />
-					<ProductItem />
-					<ProductItem />
-					<ProductItem />
-					<ProductItem />
-					<ProductItem />
-					<ProductItem />
+                <GroupItem />
+                <GroupItem />
+                <GroupItem />
+                <GroupItem />
 				</tbody>
 			</table>
 		</div>
-	);
+  )
 }
