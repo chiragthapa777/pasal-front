@@ -6,6 +6,8 @@ type Props = {
 	basePath: string;
 };
 
+// TODO - VENDOR DETAIL AND UPDATE section
+
 export default function VendorNav({ basePath }: Props) {
 	return (
 		<div className="w-full border-b bg-base-100">

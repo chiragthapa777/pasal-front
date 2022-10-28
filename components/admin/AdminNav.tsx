@@ -31,8 +31,11 @@ export default function AdminNav({basePath}: any) {
 								Vendors
 							</Link>
 						</li>
+						<li className="border-b">
+							<Link href={"/admin/payments"}>Payments</Link>
+						</li>
 						<li className="">
-							<Link href={"/vendor/payments"}>Payments</Link>
+							<Link href={"/admin/tags"}>Tags</Link>
 						</li>
 					</ul>
 				</div>
