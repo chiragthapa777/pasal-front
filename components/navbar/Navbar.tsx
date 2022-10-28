@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Itemlist from "./Itemlist";
 import Dropdown from "./Dropdown";
 import { MdOutlineMenu, MdSearch, MdStore } from "react-icons/md";
@@ -9,7 +9,22 @@ import Account from "./additional/Account";
 import BottomNavigation from "./BottomNavigation";
 import ThemeSwap from "./additional/ThemeSwap";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
 export default function Navbar({ children, theme, settheme }: any) {
+	const router = useRouter();
+	const [search, setSearch] = useState("");
+	const handleSearch = () => {
+		if(search!==""){
+			router.push({
+				pathname: "/product",
+				query: {
+					search,
+				},
+			});
+			setSearch("")
+		}
+	};
 	return (
 		<div className="drawer">
 			<input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -27,9 +42,9 @@ export default function Navbar({ children, theme, settheme }: any) {
 						</div>
 						<div className="flex-1 px-1 md:px-2 mx-1 md:mx-2 text-3xl md:text-4xl font-extrabold text-primary">
 							{" "}
-							<Link href={"/"} >
+							<Link href={"/"}>
 								<div className="flex cursor-pointer">
-                <MdStore className="my-auto pr-1" />
+									<MdStore className="my-auto pr-1" />
 									<p>पसल</p>
 								</div>
 							</Link>{" "}
@@ -39,11 +54,13 @@ export default function Navbar({ children, theme, settheme }: any) {
 					<div className="form-control block sm:hidden ">
 						<div className=" input-group ">
 							<input
+								value={search}
+								onChange={(e) => setSearch(e.target.value)}
 								type="text"
 								placeholder="Search…"
 								className="input input-bordered input-sm sm:input-md p-1"
 							/>
-							<button className="btn btn-square btn-sm">
+							<button className="btn btn-square btn-sm" onClick={handleSearch}>
 								<MdSearch className="text-2xl sm:text-3xl" />
 							</button>
 						</div>
@@ -51,11 +68,13 @@ export default function Navbar({ children, theme, settheme }: any) {
 					<div className="form-control hidden sm:block ">
 						<div className=" input-group ">
 							<input
+								value={search}
+								onChange={(e) => setSearch(e.target.value)}
 								type="text"
 								placeholder="Search…"
 								className="input input-bordered input-sm sm:input-md p-1"
 							/>
-							<button className="btn btn-square ">
+							<button className="btn btn-square " onClick={handleSearch}>
 								<MdSearch className="text-2xl md:text-3xl" />
 							</button>
 						</div>

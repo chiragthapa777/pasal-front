@@ -1,4 +1,4 @@
-admin page payment tags order vendor(request handle) 2hr
+admin page payment tags order vendor(request handle) 2hr done
 product page with query like search, tags, vendor (vendorProfile for customer) 2hr
 login page register page 1hr
 apply for vendor 1hr
