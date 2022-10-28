@@ -5,7 +5,7 @@ import {
 	MdDashboard,
 	MdFilterAlt,
 	MdShoppingBasket,
-	MdAdminPanelSettings
+	MdAdminPanelSettings,
 } from "react-icons/md";
 import Link from "next/link";
 import Filter from "../helper/modal/Filter";
@@ -54,6 +54,18 @@ export default function Itemlist() {
 					</a>
 				</li>
 			</Link>
+			<Link href={"/account/order"}>
+				<li
+					className={
+						"md:hover:bg-primary md:hover:text-primary-content"
+					}
+				>
+					<a>
+						<MdShoppingBasket className={" text-2xl"} />
+						Orders
+					</a>
+				</li>
+			</Link>
 			<Link href={"/vendor"}>
 				<li
 					className={
@@ -75,25 +87,6 @@ export default function Itemlist() {
 					<a>
 						<MdAdminPanelSettings className={" text-2xl"} />
 						Admin
-					</a>
-				</li>
-			</Link>
-
-			<li className={"md:hover:bg-primary md:hover:text-primary-content"}>
-				<a>
-					<MdFilterAlt className={" text-2xl"} />
-					Filter
-				</a>
-			</li>
-			<Link href={"/account/order"}>
-				<li
-					className={
-						"md:hover:bg-primary md:hover:text-primary-content"
-					}
-				>
-					<a>
-						<MdShoppingBasket className={" text-2xl"} />
-						Orders
 					</a>
 				</li>
 			</Link>

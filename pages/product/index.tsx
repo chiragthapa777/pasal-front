@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import ProductGroup from "../../components/product/ProductGroup";
 import {
@@ -13,6 +13,12 @@ import { productList } from "../../data";
 import Link from "next/link";
 
 export default function index({ data, query }: any) {
+	const topRef:any = useRef(null);
+    useEffect(() => {
+      topRef.current.scrollIntoView({ behavior: "auto" });
+
+    }, [])
+    
 	const [search, setsearch] = useState("");
 	const [showSideBar, setShowSidebar] = useState(false);
 	const router = useRouter();
@@ -37,7 +43,7 @@ export default function index({ data, query }: any) {
 	const [open, setOpen] = useState(false);
 	return (
 		<>
-			<div className="container mx-auto lg:w-5/6">
+			<div className="container mx-auto lg:w-5/6" ref={topRef}>
 				<div className="text-sm breadcrumbs text-info">
 					<ul className="lg:max-w-[1200px] container">
 						<li className="cursor-pointer hover:underline">
@@ -65,7 +71,7 @@ export default function index({ data, query }: any) {
 						{query?.vendor && (
 							<li className="cursor-pointer hover:underline">
 								<MdStore className="mr-1 my-auto" />
-								<div className="my-auto">{query.tag}</div>
+								<div className="my-auto">{query.vendor}</div>
 							</li>
 						)}
 					</ul>

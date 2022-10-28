@@ -7,6 +7,8 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import {handleSwal} from "../store/slice/profile";
 import { useSelector, useDispatch } from 'react-redux'
+import CategorySlider from '../components/homepage/CategorySlider';
+import ImageGallery from '../components/homepage/ImageGallery';
 
 
 const Index: NextPage = (props : any) => {
@@ -29,10 +31,11 @@ const Index: NextPage = (props : any) => {
    <div className={''}>
     {/*<Hero />*/}
         <Corousel/>
+         <CategorySlider />
          <ProductGroup header={"New Arrivals"} productList={productList}/>
          <ProductGroup header={"Top seller"} productList={productList}/>
+         <ImageGallery />
          <ProductGroup header={"Dashain Special"} productList={productList}/>
-        <button onClick={openSwap}>Open swal</button>
    </div>
   )
 }

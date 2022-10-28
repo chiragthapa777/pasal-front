@@ -27,7 +27,7 @@ function ProductCard(props: any) {
 					{product.price}
 				</p>
 				<div className="card-actions w-full">
-					<button className="btn btn-primary btn-sm sm:btn-md btn-block">
+					<button className="btn btn-primary btn-sm sm:btn-md btn-block btn-outline">
 						<MdShoppingCart className="mr-2 text-xl sm:text-2xl" />{" "}
 						ADD TO CART
 					</button>
