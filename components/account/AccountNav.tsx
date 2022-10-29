@@ -47,7 +47,7 @@ export default function AccountNav({}: Props) {
 						Shipping Address
 					</Link>
 				</div>
-				<div className="flex m-1  hover:underline">
+				<div className="flex m-1  hover:underline cursor-pointer">
 					<HiOutlineLogout className="my-auto text-xl mr-2" />
 					<p onClick={handleLogout}>Logout</p>
 				</div>

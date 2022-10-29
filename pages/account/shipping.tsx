@@ -57,7 +57,6 @@ export default function shipping({ data, error }: any) {
 			return errors;
 		},
 	});
-	console.log(formik.isSubmitting)
 	return (
 		<div className={"accountCss lg:max-w-[1200px] container mx-auto p-1"}>
 			{/* upper navigation */}
