@@ -20,7 +20,7 @@ const ProductById: NextPage = (props : any) => {
     return (
         <div className={''} ref={topRef}>
             <ProductDetail product={product}/>
-            {/* <ProductDescription product={product}/> */}
+            <ProductDescription product={product}/>
             <ProductReviewSection product={product}/>
             <ProductQnaSection />
         </div>

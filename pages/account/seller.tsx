@@ -4,7 +4,7 @@ import {
 	MdHomeFilled,
 	MdManageAccounts,
 	MdStoreMallDirectory,
-	MdNavigateNext
+	MdNavigateNext,
 } from "react-icons/md";
 import AccountNav from "../../components/account/AccountNav";
 
@@ -44,15 +44,6 @@ export default function seller({}: Props) {
 					<h1 className="p-1 font-bold text-base-content/80 text-xl border-b uppercase">
 						Apply for vendor (seller)
 					</h1>
-					<div className="w-full flex justify-center my-4">
-						<ul className="steps text-center">
-							<li className="step step-info text-info">
-								Company Detail
-							</li>
-							<li className="step s">Apply for Vendor </li>
-							<li className="step ">Wait for Acceptance</li>
-						</ul>
-					</div>
 					<div className="CompanyDetail">
 						<div className="form-control w-full">
 							<label className="label">
@@ -66,7 +57,7 @@ export default function seller({}: Props) {
 								className="input input-bordered input-sm input-wide w-full md:w-[70%]"
 							/>
 						</div>
-            <div className="form-control w-full">
+						<div className="form-control w-full">
 							<label className="label">
 								<span className="label-text uppercase">
 									Pan Number
@@ -84,12 +75,14 @@ export default function seller({}: Props) {
 									Decription
 								</span>
 							</label>
-							<textarea 
+							<textarea
 								placeholder="Decription"
 								className="textarea  textarea-bordered  input-wide w-full md:w-[70%]"
 							/>
 						</div>
-            <button className="btn btn-sm mt-3 btn-info">Next <MdNavigateNext className="text-lg" /></button>
+						<button className="btn btn-sm mt-3 btn-info">
+							Next <MdNavigateNext className="text-lg" />
+						</button>
 					</div>
 				</div>
 			</section>
