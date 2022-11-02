@@ -12,7 +12,7 @@ export default function editproduct({}: Props) {
 				<h1 className="p-1 font-bold text-base-content/80 text-xl border-b uppercase">
 					Edit Product
 				</h1>
-				<ProductForm />
+				{/* <ProductForm product={{}} /> */}
 			</div>
 		</>
 	);

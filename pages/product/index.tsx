@@ -6,7 +6,7 @@ import {
 	MdHomeFilled,
 	MdShoppingBasket,
 	MdStore,
-	MdSearch
+	MdSearch,
 } from "react-icons/md";
 
 import { productList } from "../../data";
@@ -17,20 +17,19 @@ import Error from "../../components/helper/Error";
 import { getCookie } from "cookies-next";
 
 export default function index({ data, query, error }: any) {
-	const topRef:any = useRef(null);
+	const topRef: any = useRef(null);
 	const [search, setsearch] = useState("");
 	const [showSideBar, setShowSidebar] = useState(false);
 	const router = useRouter();
 	const [open, setOpen] = useState(false);
-    useEffect(() => {
-      topRef.current.scrollIntoView({ behavior: "auto" });
+	useEffect(() => {
+		topRef.current.scrollIntoView({ behavior: "auto" });
+	}, []);
 
-    }, [])
-
-	if(error!==""){
-		return (<Error message={error} />)
+	if (error !== "") {
+		return <Error message={error} />;
 	}
-    
+
 	return (
 		<>
 			<div className="container mx-auto lg:w-5/6" ref={topRef}>
@@ -78,12 +77,16 @@ export default function index({ data, query, error }: any) {
 						<>
 							<div className="pageHeader p-1 font-bold text-base-content/80 text-xl md:text-3xl border-b ">
 								Category : {query.tag}
-								{
-									data.length>0 &&
-								<p className="text-sm font-normal">
-									{data[0]?.productTags?.find((s:any)=>s?.tag?.name===query.tag)?.tag?.desc}
-								</p>
-								}
+								{data.length > 0 && (
+									<p className="text-sm font-normal">
+										{
+											data[0]?.productTags?.find(
+												(s: any) =>
+													s?.tag?.name === query.tag
+											)?.tag?.desc
+										}
+									</p>
+								)}
 							</div>
 						</>
 					)}
@@ -94,12 +97,11 @@ export default function index({ data, query, error }: any) {
 									<MdStore className="my-auto mr-1" />
 									{query.vendor}
 								</span>
-								{
-									data.length>0 &&
-								<p className="text-sm font-normal">
-									{data[0]?.vendor?.desc}
-								</p>
-								}
+								{data.length > 0 && (
+									<p className="text-sm font-normal">
+										{data[0]?.vendor?.desc}
+									</p>
+								)}
 							</div>
 						</>
 					)}
@@ -121,33 +123,33 @@ export default function index({ data, query, error }: any) {
 	);
 }
 
-export async function getServerSideProps({ req,res,query }: any) {
-	const axios = useAxios(getCookie("Ptoken", { req, res }))
-	let data:any=[]
-	let url=`${baseUrl}/product`
-	let error=""
-	if(query?.search){
-		url +=`/?search=${query.search}`
+export async function getServerSideProps({ req, res, query }: any) {
+	const axios = useAxios(getCookie("Ptoken", { req, res }));
+	let data: any = [];
+	let url = `${baseUrl}/product`;
+	let error = "";
+	if (query?.search) {
+		url += `/?search=${encodeURIComponent(query.search)}`;
 	}
-	if(query?.tag){
-		url +=`/?tag=${query.tag}`
+	if (query?.tag) {
+		url += `/?tag=${encodeURIComponent(query.tag)}`;
 	}
-	if(query?.vendor){
-		url +=`/?vendor=${query.vendor}`
+	if (query?.vendor) {
+		url += `/?vendor=${encodeURIComponent(query.vendor)}`;
 	}
-	console.log(url)
+	console.log(url);
 	try {
-		const res=await axios.get(url)
-		data=res?.data?.data || []
-	} catch (error:any) {
-		error=error?.response?.data?.data || "Something went wrong !!!"
+		const res = await axios.get(url);
+		data = res?.data?.data || [];
+	} catch (error: any) {
+		error = error?.response?.data?.data || "Something went wrong !!!";
 	}
 
 	return {
 		props: {
 			data,
 			query,
-			error
+			error,
 		},
 	};
 }

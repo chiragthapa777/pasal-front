@@ -123,11 +123,11 @@ export default function login({}: Props) {
 								</label>
 								<input
 									id="password"
+									value={formik.values.password}
+									onChange={formik.handleChange}
 									type="password"
 									placeholder="password"
 									className="input input-bordered"
-									value={formik.values.password}
-									onChange={formik.handleChange}
 								/>
 								<label className="label">
 									<span className="label-text-alt text-error">

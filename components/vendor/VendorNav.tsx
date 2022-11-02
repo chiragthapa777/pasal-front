@@ -31,8 +31,8 @@ export default function VendorNav({ basePath }: Props) {
 							<Link href={"/vendor/product"}>Product</Link>
 						</li>
 						<li className="border-b">
-							<Link href={"/vendor/productgroup"}>
-								Product Group
+							<Link href={"/vendor/addproduct"}>
+								Add Product
 							</Link>
 						</li>
 						<li className="border-b">
