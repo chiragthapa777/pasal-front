@@ -7,6 +7,7 @@ import {
 	MdShoppingBasket,
 	MdAdminPanelSettings,
 } from "react-icons/md";
+import { GrProductHunt } from "react-icons/gr";
 import Link from "next/link";
 import Filter from "../helper/modal/Filter";
 
@@ -51,6 +52,18 @@ export default function Itemlist() {
 					<a>
 						<MdStore className={" text-2xl"} />
 						Vendors
+					</a>
+				</li>
+			</Link>
+			<Link href={"/product"}>
+				<li
+					className={
+						"md:hover:bg-primary md:hover:text-primary-content"
+					}
+				>
+					<a>
+						<GrProductHunt className={" text-2xl"} />
+						Products
 					</a>
 				</li>
 			</Link>

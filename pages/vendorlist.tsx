@@ -1,5 +1,6 @@
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import {
 	MdHomeFilled,
 	MdShoppingBasket,
@@ -7,11 +8,30 @@ import {
 	MdSearch,
 	MdChevronRight,
 } from "react-icons/md";
+import { baseUrl } from "../api/apiUrl";
+import Error from "../components/helper/Error";
 import VendorCard from "../components/helper/VendorCard";
+import useAxios from "../hooks/useAxios";
 
-type Props = {};
+type Props = {
+	data:[any]
+	error:string
+};
 
-export default function vendorlist({}: Props) {
+export default function vendorlist({error,data}:Props) {
+	const [search, setSearch] = useState("");
+	const router = useRouter();
+	if (error !== "") {
+		return <Error message={error} />;
+	}
+	const handleSearch = () => {
+		router.push({
+			pathname: "/vendorlist",
+			query: {
+				search,
+			},
+		});
+	};
 	return (
 		<>
 			<div className="container mx-auto lg:w-5/6">
@@ -44,8 +64,15 @@ export default function vendorlist({}: Props) {
 									type="text"
 									placeholder="Search…"
 									className="input input-bordered input-sm"
+									value={search}
+									onChange={(e) => {
+										setSearch(e.target.value);
+									}}
 								/>
-								<button className="btn btn-square btn-sm">
+								<button
+									className="btn btn-square btn-sm"
+									onClick={handleSearch}
+								>
 									<MdSearch className="text-xl" />
 								</button>
 							</div>
@@ -56,18 +83,32 @@ export default function vendorlist({}: Props) {
 			<div className="my-4 mx-2">
 				<div className="container mx-auto lg:w-5/6 flex items-center justify-center flex-col px-2">
 					<div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
-						<VendorCard />
-						<VendorCard />
-						<VendorCard />
-						<VendorCard />
-						<VendorCard />
-						<VendorCard />
-						<VendorCard />
-						<VendorCard />
-						<VendorCard />
+						{data.length>0 ? data.map((vendor:any)=><VendorCard key={vendor.id} vendor={vendor} />):"Cannot find any vendor"}
 					</div>
 				</div>
 			</div>
 		</>
 	);
+}
+
+export async function getServerSideProps({ req, res, query }: any) {
+	const { search } = query;
+	console.log(search);
+	const axios = useAxios();
+	let data: any = [];
+	let error: string = "";
+	try {
+		let url = `${baseUrl}/vendor`;
+		if (search) url += `/?search=${search}`;
+		const res = await axios.get(url);
+		data = res?.data?.data || [];
+	} catch (error: any) {
+		error = error?.response?.data?.data || "Something went Wrong!";
+	}
+	return {
+		props: {
+			data,
+			error,
+		},
+	};
 }

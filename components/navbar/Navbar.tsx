@@ -31,16 +31,16 @@ export default function Navbar({ children, theme, settheme }: any) {
 			<div className="drawer-content flex flex-col">
 				<div className="w-full navbar flex justify-between  bg-base-100 sticky top-0 z-50 drop-shadow">
 					{/* logo and hamburger */}
-					<div>
-						<div className="lg:hidden">
+					<div className="my-auto">
+						<div className="lg:hidden my-auto">
 							<label
 								htmlFor="my-drawer-3"
-								className="btn btn-square btn-ghost btn-sm md:btn-md"
+								className="btn btn-square btn-ghost btn-sm md:btn-md my-ato"
 							>
-								<MdOutlineMenu className="text-3xl md:text-4xl text-base-content p-1" />
+								<MdOutlineMenu className="text-3xl my-auto md:text-4xl text-base-content p-1" />
 							</label>
 						</div>
-						<div className="flex-1 px-1 md:px-2 mx-1 md:mx-2 text-3xl md:text-4xl font-extrabold text-primary">
+						<div className="flex-1 px-[0.05rem] md:px-2 mx-1 md:mx-2 text-3xl md:text-4xl font-extrabold text-primary">
 							{" "}
 							<Link href={"/"}>
 								<div className="flex cursor-pointer">
@@ -58,7 +58,7 @@ export default function Navbar({ children, theme, settheme }: any) {
 								onChange={(e) => setSearch(e.target.value)}
 								type="text"
 								placeholder="Search…"
-								className="input input-bordered input-sm sm:input-md p-1"
+								className="input input-bordered input-sm sm:input-md p-1 w-[160px] xs:w-[200px] bg-base-300/40"
 							/>
 							<button className="btn btn-square btn-sm" onClick={handleSearch}>
 								<MdSearch className="text-2xl sm:text-3xl" />
@@ -72,7 +72,7 @@ export default function Navbar({ children, theme, settheme }: any) {
 								onChange={(e) => setSearch(e.target.value)}
 								type="text"
 								placeholder="Search…"
-								className="input input-bordered input-sm sm:input-md p-1"
+								className="input input-bordered input-sm sm:input-md p-1 lg:w-[450px] bg-base-300/40"
 							/>
 							<button className="btn btn-square " onClick={handleSearch}>
 								<MdSearch className="text-2xl md:text-3xl" />

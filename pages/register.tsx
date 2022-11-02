@@ -69,12 +69,13 @@ export default function register({}: Props) {
 					values.password
 				)
 			) {
-				errors.password = "password should contain atleast one number, one special character, one capital character and length should be between 8 to 20";
+				errors.password =
+					"password should contain atleast one number, one special character, one capital character and length should be between 8 to 20";
 			}
-			if(!values.repassword){
-				errors.repassword="Required!"
-			}else if(values.repassword!==values.password){
-				errors.repassword="Password doesnot match!"
+			if (!values.repassword) {
+				errors.repassword = "Required!";
+			} else if (values.repassword !== values.password) {
+				errors.repassword = "Password doesnot match!";
 			}
 			if (!values.email) {
 				errors.email = "Required!";
@@ -98,7 +99,9 @@ export default function register({}: Props) {
 		<div className="hero min-h-screen bg-base-200" ref={topRef}>
 			<div className="hero-content flex-col lg:flex-row-reverse">
 				<div className="text-center lg:text-left">
-					<h1 className="text-5xl font-bold">Sign Up</h1>
+				<h1 className="text-5xl font-bold text-primary">
+						<Link href={"/"}>Pasal</Link>
+					</h1>
 					<p className="py-6">
 						PASAL is a muiltivendor ecommerce application where you
 						can find every sort of thing. This website is one stop
@@ -109,24 +112,28 @@ export default function register({}: Props) {
 				</div>
 				<div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 					<div className="card-body">
-						<div className="form-control">
-							<label className="label">
-								<span className="label-text">Name</span>
-							</label>
-							<input
-								value={formik.values.name}
-								onChange={formik.handleChange}
-								id="name"
-								type="text"
-								className="input input-bordered"
-							/>
-							<label className="label">
-								<span className="label-text-alt text-error">
-									{formik.errors?.name}
-								</span>
-							</label>
-						</div>
 						<form onSubmit={formik.handleSubmit}>
+							<h1 className="text-4xl font-bold text-primary text-center mx-auto">
+								Sign up
+							</h1>
+							<div className="form-control">
+								<label className="label">
+									<span className="label-text">Name</span>
+								</label>
+								<input
+									value={formik.values.name}
+									onChange={formik.handleChange}
+									id="name"
+									type="text"
+									className="input input-bordered"
+								/>
+								<label className="label">
+									<span className="label-text-alt text-error">
+										{formik.errors?.name}
+									</span>
+								</label>
+							</div>
+
 							<div className="form-control">
 								<label className="label">
 									<span className="label-text">Email</span>
@@ -182,7 +189,9 @@ export default function register({}: Props) {
 							</div>
 							<div className="form-control">
 								<label className="label">
-									<span className="label-text">Re-enter Password</span>
+									<span className="label-text">
+										Re-enter Password
+									</span>
 								</label>
 								<input
 									value={formik.values.repassword}

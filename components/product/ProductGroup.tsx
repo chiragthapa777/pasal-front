@@ -5,7 +5,7 @@ function ProductGroup(props: any) {
 	const { header, productList } = props;
 	return (
 		<div className="my-2 mt-10">
-			<div className="container mx-auto lg:w-5/6 flex items-center justify-center flex-col px-2">
+			<div className={`container mx-auto lg:w-5/6 flex ${header && "items-center justify-center"} flex-col px-2`}>
 				{header && (
 					<div className={"w-full flex justify-between m-2 sm:mx-20"}>
 						<h1

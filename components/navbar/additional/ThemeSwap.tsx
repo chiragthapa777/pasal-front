@@ -8,7 +8,7 @@ export default function ThemeSwap({theme, settheme}:any) {
     settheme(!mode)
   }
   return (
-    <label className="swap swap-rotate text-base-content text-2xl md:text-3xl ml-1 rounded-full p-2 hover:bg-base-300">
+    <label className="swap swap-rotate text-base-content text-2xl md:text-3xl ml-1 rounded-full pl-1 sm:p-2 hover:bg-base-300">
       <input type="checkbox" checked={theme} onChange={themeFunc} />
       <MdDarkMode className="swap-on"/>
       <MdLightMode className="swap-off"/>

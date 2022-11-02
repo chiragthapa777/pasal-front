@@ -11,36 +11,26 @@ import {
 
 import { productList } from "../../data";
 import Link from "next/link";
+import useAxios from "../../hooks/useAxios";
+import { baseUrl } from "../../api/apiUrl";
+import Error from "../../components/helper/Error";
+import { getCookie } from "cookies-next";
 
-export default function index({ data, query }: any) {
+export default function index({ data, query, error }: any) {
 	const topRef:any = useRef(null);
+	const [search, setsearch] = useState("");
+	const [showSideBar, setShowSidebar] = useState(false);
+	const router = useRouter();
+	const [open, setOpen] = useState(false);
     useEffect(() => {
       topRef.current.scrollIntoView({ behavior: "auto" });
 
     }, [])
-    
-	const [search, setsearch] = useState("");
-	const [showSideBar, setShowSidebar] = useState(false);
-	const router = useRouter();
-	useEffect(() => {
-		// router.push({
-		//   pathname:'/product',
-		//   query:{
-		//     serach:"asdigfai"
-		//   }
-		// })
-		//yoo garna ni milxa kina ki client side vayo
-	}, []);
-	const handleSearch = () => {
-		router.push({
-			pathname: "/product",
-			query: {
-				search,
-			},
-		});
-	};
 
-	const [open, setOpen] = useState(false);
+	if(error!==""){
+		return (<Error message={error} />)
+	}
+    
 	return (
 		<>
 			<div className="container mx-auto lg:w-5/6" ref={topRef}>
@@ -54,7 +44,9 @@ export default function index({ data, query }: any) {
 						</li>
 						<li className="cursor-pointer hover:underline">
 							<MdShoppingBasket className="mr-1 my-auto" />
-							<div className="my-auto">Product</div>
+							<Link href="/product" className="my-auto">
+								Product
+							</Link>
 						</li>
 						{query?.tag && (
 							<li className="cursor-pointer hover:underline">
@@ -86,10 +78,12 @@ export default function index({ data, query }: any) {
 						<>
 							<div className="pageHeader p-1 font-bold text-base-content/80 text-xl md:text-3xl border-b ">
 								Category : {query.tag}
+								{
+									data.length>0 &&
 								<p className="text-sm font-normal">
-									Lorem ipsum dolor sit amet consectetur
-									adipisicing elit. Veritatis, deserunt!
+									{data[0]?.productTags?.find((s:any)=>s?.tag?.name===query.tag)?.tag?.desc}
 								</p>
+								}
 							</div>
 						</>
 					)}
@@ -100,10 +94,12 @@ export default function index({ data, query }: any) {
 									<MdStore className="my-auto mr-1" />
 									{query.vendor}
 								</span>
+								{
+									data.length>0 &&
 								<p className="text-sm font-normal">
-									Lorem ipsum dolor sit amet consectetur
-									adipisicing elit. Veritatis, deserunt!
+									{data[0]?.vendor?.desc}
 								</p>
+								}
 							</div>
 						</>
 					)}
@@ -120,22 +116,38 @@ export default function index({ data, query }: any) {
 					</div>
 				</div>
 			</div>
-			<ProductGroup productList={productList} />
+			<ProductGroup productList={data} />
 		</>
 	);
 }
 
-export async function getServerSideProps({ query }: any) {
-	console.log("pugyoooooo");
-	function timeout() {
-		return new Promise((resolve) => setTimeout(resolve, 3000));
+export async function getServerSideProps({ req,res,query }: any) {
+	const axios = useAxios(getCookie("Ptoken", { req, res }))
+	let data:any=[]
+	let url=`${baseUrl}/product`
+	let error=""
+	if(query?.search){
+		url +=`/?search=${query.search}`
 	}
-	console.log("Req : ", query);
-	// await timeout();
+	if(query?.tag){
+		url +=`/?tag=${query.tag}`
+	}
+	if(query?.vendor){
+		url +=`/?vendor=${query.vendor}`
+	}
+	console.log(url)
+	try {
+		const res=await axios.get(url)
+		data=res?.data?.data || []
+	} catch (error:any) {
+		error=error?.response?.data?.data || "Something went wrong !!!"
+	}
+
 	return {
 		props: {
-			data: [],
+			data,
 			query,
+			error
 		},
 	};
 }

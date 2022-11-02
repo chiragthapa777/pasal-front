@@ -11,7 +11,7 @@ export default function ProductDescription(props: any) {
 			</h1>
 			<div className="border border-base-content/10 p-4">
 				{parse(
-					"<ul><li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur, tempora!</li><li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur, tempora!</li><li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur, tempora!</li><li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur, tempora!</li></ul>"
+					product?.desc
 				)}
 				{/* <ReactQuill
 					value={

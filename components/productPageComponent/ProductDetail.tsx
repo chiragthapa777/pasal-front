@@ -6,7 +6,7 @@ import {
 	MdOutlineFavorite,
 	MdAttachMoney,
 	MdHomeFilled,
-	MdShoppingBasket
+	MdShoppingBasket,
 } from "react-icons/md";
 import Quantity from "../helper/Quantity";
 import { product } from "../../data";
@@ -15,8 +15,8 @@ import commaNumber from "comma-number";
 import Link from "next/link";
 
 function ProductDetail(props: any) {
-	  const [quantity, setquantity] = useState(1);
-	  const { product: any } = props;
+	const [quantity, setquantity] = useState(1);
+	const { product, setproduct } = props;
 	const ratingChanged = (newRating: number) => {
 		console.log(newRating);
 	};
@@ -33,9 +33,7 @@ function ProductDetail(props: any) {
 					</li>
 					<li className="cursor-pointer hover:underline">
 						<MdShoppingBasket className="mr-1 my-auto" />
-						<div className="my-auto">
-							Product
-						</div>
+						<div className="my-auto">Product</div>
 					</li>
 				</ul>
 			</div>
@@ -49,52 +47,78 @@ function ProductDetail(props: any) {
 				<div className={"p-1 sm:p-2  w-full sm:w-[50%] sm:m-1"}>
 					{/*     detail      */}
 					<h1 className="text-primary font-bold text-2xl sm:text-3xl">
-						Men winter pant fur inside
+						{product.name}
 					</h1>
 					<div className="flex justify-between p-1 mb-3">
 						<ReactStars
 							count={5}
-							value={1}
+							value={product?.averageRating || 0}
 							onChange={ratingChanged}
 							half={true}
 							edit={false}
 							size={24}
 						/>
 						<div className="text-xs my-auto">
-							13 reviews | 3 questions
+							{product._count?.reviews} reviews |{" "}
+							{product._count?.questions} questions
 						</div>
 					</div>
 					<div className="divider p-0 m-0 "></div>
-					<div className="flex justify-between m-1 my-3">
-						<button className="btn btn-primary btn-xs">
-							<MdStore className="mr-2 text-lg" /> Zara
+					<div className="flex m-1 my-3">
+						Vendor :
+						<button className="btn btn-primary btn-xs ml-2 rounded-sm">
+							<MdStore className="mr-2 text-lg" />{" "}
+							{product?.vendor?.name}
 						</button>
+					</div>
+					<div className="flex flex-wrap gap-2 m-1 my-3">
+						<p className="my-auto">Tags : </p>
+						{product?.productTags.length > 0
+							? product.productTags.map((tag: any) => {
+								if(tag?.tag){
+									return(
+
+										<button key={tag.id} className="btn btn-primary btn-sm btn-outline rounded-sm">
+											{tag.tag?.name}
+										</button>
+								  )
+								}else{
+									return null
+								}
+								})
+							: null}
 					</div>
 
 					<div className="divider p-0 m-0"></div>
 					<p className="font-bold text-3xl m-1">
-						<span className="text-xl text-info">(10% off)</span>
-						{" "}
-						<span className="line-through text-info text-2xl"><span>Rs.</span>{commaNumber(6000)}</span>
-						{" "}
-						<span><span>Rs.</span>{commaNumber(5000)} </span>
-						
+						{/* <span className="text-xl text-info">(10% off)</span>{" "} */}
+						{/* <span className="line-through text-info text-2xl">
+							<span>Rs.</span>
+							{commaNumber(6000)}
+						</span>{" "} */}
+						<span>
+							<span>Rs.</span>
+							{commaNumber(product.price)}{" "}
+						</span>
 					</p>
-					<Quantity max={10} min={1} />
+					<div className="flex gap-2">
+						<p className="my-auto">Quantity <span className="text-success">(stock : {product.quantity}) </span>:</p>
+
+						<Quantity max={product.quantity} min={1} />
+					</div>
 					<div className="my-2">
 						<div className="flex mb-2">
 							<button className="btn btn-primary btn-outline flex-1 mr-2">
 								<MdShoppingCart className="mr-2 text-2xl" />
-								<p className="text-lg">Add to cart</p> 
+								<p className="text-lg">Add to cart</p>
 							</button>
 							<button className="btn btn-primary btn-outline flex-none text-2xl">
 								<MdOutlineFavorite />
 							</button>
 						</div>
 						<button className="btn btn-primary btn-outline btn-block">
-							<MdAttachMoney className="mr-2 text-2xl" /> 
-							<p className="text-lg">Buy now</p> 
-
+							<MdAttachMoney className="mr-2 text-2xl" />
+							<p className="text-lg">Buy now</p>
 						</button>
 					</div>
 				</div>

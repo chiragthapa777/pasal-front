@@ -1,21 +1,23 @@
-import React from "react";
+import React,{useState} from "react";
 import OrderDetail from "../../helper/OrderDetail";
 
 type Props = {};
 
 export default function OrderModal({}: Props) {
+	const [open, setopen] = useState(false)
 	return (
 		<>
-			<label htmlFor="my-modal-3" className="btn btn-sm btn-info mx-1">
+			<label htmlFor="my-modal-3" className="btn btn-sm btn-info mx-1" onClick={()=>{setopen(!open)}}>
 				View
 			</label>
 
-			<input type="checkbox" id="my-modal-3" className="modal-toggle" />
+			<input type="checkbox" id="my-modal-3" className="modal-toggle" checked={open} disabled />
 			<div className="modal">
 				<div className="modal-box relative text-left  w-11/12 max-w-5xl">
 					<label
 						htmlFor="my-modal-3"
 						className="btn btn-sm btn-circle absolute right-2 top-2 btn-error "
+						onClick={()=>{setopen(!open)}}
 					>
 						✕
 					</label>

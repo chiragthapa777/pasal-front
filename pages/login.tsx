@@ -36,13 +36,13 @@ export default function login({}: Props) {
 					}
 				);
 				setCookie("Ptoken", res.data.data.token);
-				formik.setSubmitting(false)
+				formik.setSubmitting(false);
 				if (getCookie("Ptoken")) {
 					router.push("/");
 				}
 			})
 			.catch((err) => {
-				formik.setSubmitting(false)
+				formik.setSubmitting(false);
 				toast.error(err?.response?.data?.data, {
 					theme:
 						window.localStorage.getItem("lightMode") === "true"
@@ -83,7 +83,7 @@ export default function login({}: Props) {
 			<div className="hero-content flex-col lg:flex-row-reverse">
 				<div className="text-center lg:text-left">
 					<h1 className="text-5xl font-bold text-primary">
-						Login now!
+						<Link href={"/"}>Pasal</Link>
 					</h1>
 					<p className="py-6">
 						PASAL is a muiltivendor ecommerce application where you
@@ -96,6 +96,9 @@ export default function login({}: Props) {
 				<div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 					<form onSubmit={formik.handleSubmit}>
 						<div className="card-body">
+							<h1 className="text-4xl font-bold text-primary text-center mx-auto ">
+								Login
+							</h1>
 							<div className="form-control">
 								<label className="label">
 									<span className="label-text">Email</span>
@@ -142,7 +145,14 @@ export default function login({}: Props) {
 									Login
 								</button>
 							</div>
-							<p className="text-xs"> New to PASAL? <span  className="link text-blue-400"><Link href={"/register"}>click here</Link></span>  to create a account</p>
+							<p className="text-xs">
+								{" "}
+								New to PASAL?{" "}
+								<span className="link text-blue-400">
+									<Link href={"/register"}>click here</Link>
+								</span>{" "}
+								to create a account
+							</p>
 						</div>
 					</form>
 				</div>

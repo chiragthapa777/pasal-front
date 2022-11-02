@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useFormik } from "formik";
+import React, { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -6,6 +7,28 @@ type Props = {};
 
 export default function ProductForm({}: Props) {
 	const [content, setcontent] = useState("");
+
+	const handleAddProduct = (values:any) =>{
+		console.log(values)
+	}
+
+	const formik = useFormik({
+		initialValues: {
+			email: "",
+			password: "",
+		},
+		onSubmit: (values) => {
+			handleAddProduct(values);
+		},
+		validate: (values) => {
+			let errors: any = {};
+			if (!values.password) {
+				errors.password = "Required!";
+			}
+			return errors;
+		},
+	});
+
 	return (
 		<div className="w-full py-4">
 			<div className="w-full flex justify-between">
