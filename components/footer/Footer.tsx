@@ -6,7 +6,7 @@ export default function Footer() {
     const profile = useSelector(selectProfile)
     const dispatch = useDispatch()
     return (
-        <div className="footer p-10 bg-base-100 text-base-content border-t-[1px] border-base-content/10 mt-5">
+        <div className="footer p-10 bg-base-100 text-base-content border-t-[1px] border-base-content/10 pt-5">
             <div>
                 <p className={`text-2xl font-bold`}>पसल</p>
                 <p>Pasal Industries Ltd.<br/>Designed and developed by Chirag Thapa</p>

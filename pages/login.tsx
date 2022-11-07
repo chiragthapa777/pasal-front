@@ -36,6 +36,7 @@ export default function login({}: Props) {
 					}
 				);
 				setCookie("Ptoken", res.data.data.token);
+				localStorage.setItem('Ptoken',res.data.data.token)
 				formik.setSubmitting(false);
 				if (getCookie("Ptoken")) {
 					router.push("/");

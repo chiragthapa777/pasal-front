@@ -24,11 +24,15 @@ export default function MultiSelect({
 	};
 	const handleSerach = (e: any) => {
 		setsearch(e.target.value);
-    if(e.target.value!==""){
-      setresult(result.filter((r:any)=>(r.name.toLowerCase()).includes(e.target.value.toLowerCase())))
-    }else{
-      setresult(list)
-    }
+		if (e.target.value !== "") {
+			setresult(
+				result.filter((r: any) =>
+					r.name.toLowerCase().includes(e.target.value.toLowerCase())
+				)
+			);
+		} else {
+			setresult(list);
+		}
 	};
 	const handleSelect = (tagId: number) => {
 		const tag = list.find((t: any) => t.id === tagId);
@@ -69,7 +73,12 @@ export default function MultiSelect({
 	return (
 		<div className="MultiSelect relative">
 			<div className="border border-base-content/25 cursor-pointer rounded-lg w-full flex justify-between">
-				<div className="flex-1 m-3 flex flex-wrap gap-2 z-20" onClick={()=>{setopen(true)}}>
+				<div
+					className="flex-1 m-3 flex flex-wrap gap-2 z-20"
+					onClick={() => {
+						setopen(true);
+					}}
+				>
 					{selects.length > 0
 						? selects.map((sel: any) => (
 								<div
@@ -96,7 +105,7 @@ export default function MultiSelect({
 			</div>
 			<div className="w-full relative">
 				<div
-					className={`z-40 absolute p-2 top-2 rounded-sm border w-full bg-base-100 flex flex-col gap-1 max-h-56 overflow-auto ${
+					className={`z-40 absolute p-2 top-2 rounded-sm border w-full bg-base-100  ${
 						open ? "block" : "hidden"
 					}`}
 				>
@@ -109,25 +118,27 @@ export default function MultiSelect({
 						}}
 						placeholder="search..."
 					/>
-					{loading ? (
-						<Loader />
-					) : result.length > 0 ? (
-						result.map((tag: any) => (
-							<div
-								key={tag.id}
-								className={` ${
-									tag?.select ? "bg-base-200/70 " : ""
-								}hover:bg-base-200 rounded-md p-1 cursor-pointer`}
-								onClick={() => {
-									handleSelect(tag.id);
-								}}
-							>
-								{tag.name}
-							</div>
-						))
-					) : (
-						"No categories"
-					)}
+					<div className="w-full flex flex-col gap-1 max-h-52 overflow-auto">
+						{loading ? (
+							<Loader />
+						) : result.length > 0 ? (
+							result.map((tag: any) => (
+								<div
+									key={tag.id}
+									className={` ${
+										tag?.select ? "bg-base-200/70 " : ""
+									}hover:bg-base-200 rounded-md p-1 cursor-pointer`}
+									onClick={() => {
+										handleSelect(tag.id);
+									}}
+								>
+									{tag.name}
+								</div>
+							))
+						) : (
+							"No categories"
+						)}
+					</div>
 				</div>
 			</div>
 		</div>

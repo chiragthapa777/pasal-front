@@ -137,7 +137,6 @@ export async function getServerSideProps({ req, res, query }: any) {
 	if (query?.vendor) {
 		url += `/?vendor=${encodeURIComponent(query.vendor)}`;
 	}
-	console.log(url);
 	try {
 		const res = await axios.get(url);
 		data = res?.data?.data || [];

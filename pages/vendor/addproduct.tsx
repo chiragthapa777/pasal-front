@@ -13,7 +13,7 @@ import useAxios from "../../hooks/useAxios";
 import { getCookie } from "cookies-next";
 import Loader from "../../components/helper/Loader";
 import { useRouter } from "next/router";
-
+import { FcAddImage } from "react-icons/fc";
 type Props = {};
 
 export default function addproduct({}: Props) {
@@ -26,6 +26,7 @@ export default function addproduct({}: Props) {
 	const [url, seturl] = useState("");
 	const [loading, setloading] = useState(false);
 	const [loadingimg, setloadingimg] = useState(false);
+	const [loadingsubmit, setloadingsubmit] = useState(false)
 	const [error, seterror] = useState("");
 
 	/**
@@ -38,24 +39,23 @@ export default function addproduct({}: Props) {
 			images,
 			tags: selectedTags.map((tag: any) => tag.name),
 		}
-		console.log(body);
+		setloadingsubmit(true);
 		axios
 			.post(`${baseUrl}/product`, body)
 			.then((res) => {
-				console.log(res);
 				toast.success(`New product added successfully`, {
 					theme:
 						window.localStorage.getItem("lightMode") === "true"
 							? "light"
 							: "dark",
 				});
-				formik.setSubmitting(false);
+				setloadingsubmit(false);
 				if (getCookie("Ptoken")) {
 					router.push("/vendor/product");
 				}
 			})
 			.catch((err) => {
-				formik.setSubmitting(false);
+				setloadingsubmit(false);
 				toast.error(err?.response?.data?.data, {
 					theme:
 						window.localStorage.getItem("lightMode") === "true"
@@ -270,6 +270,7 @@ export default function addproduct({}: Props) {
 										</span>
 									</label>
 									<input
+										id="productImage"
 										type="file"
 										accept=".png, .jpg, .jpeg"
 										onChange={onImageChange}
@@ -297,7 +298,7 @@ export default function addproduct({}: Props) {
 										/>
 									</div>
 								) : (
-									"Add Image"
+									<label className="cursor-pointer rounded-full" htmlFor="productImage"><FcAddImage className="text-3xl" /></label>
 								)}
 							</div>
 						</div>
@@ -313,7 +314,7 @@ export default function addproduct({}: Props) {
 					<div className="mx-2 my-1">
 						<button
 							className={`btn btn-primary ${
-								formik.isSubmitting || loading || loadingimg
+								formik.isSubmitting || loading || loadingimg || loadingsubmit
 									? "loading"
 									: ""
 							}`}

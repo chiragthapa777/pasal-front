@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	MdCategory,
 	MdStore,
@@ -10,12 +10,22 @@ import {
 import { GrProductHunt } from "react-icons/gr";
 import Link from "next/link";
 import Filter from "../helper/modal/Filter";
+import jwtDecode from "jwt-decode";
 
 export default function Itemlist() {
-	// const [isOpen, setIsOpen] = useState(false)
+	const [user, setuser] = useState<any>({});
 	// const handlefilter=()=>{
 	//     setIsOpen(!isOpen)
 	// }
+	useEffect(() => {
+		const token: any = localStorage.getItem("Ptoken");
+		if(token){
+			const user: any = jwtDecode(token);
+			console.log(user)
+			setuser(user);
+		}
+	}, []);
+
 	return (
 		<>
 			{/* Modals */}
@@ -79,30 +89,34 @@ export default function Itemlist() {
 					</a>
 				</li>
 			</Link>
-			<Link href={"/vendor"}>
-				<li
-					className={
-						"md:hover:bg-primary md:hover:text-primary-content"
-					}
-				>
-					<a>
-						<MdDashboard className={" text-2xl"} />
-						My Store
-					</a>
-				</li>
-			</Link>
-			<Link href={"/admin"}>
-				<li
-					className={
-						"md:hover:bg-primary md:hover:text-primary-content"
-					}
-				>
-					<a>
-						<MdAdminPanelSettings className={" text-2xl"} />
-						Admin
-					</a>
-				</li>
-			</Link>
+			{(user?.role!=="USER" && user?.vendorId) ? (
+				<Link href={"/vendor"}>
+					<li
+						className={
+							"md:hover:bg-primary md:hover:text-primary-content"
+						}
+					>
+						<a>
+							<MdDashboard className={" text-2xl"} />
+							My Store
+						</a>
+					</li>
+				</Link>
+			) : null}
+			{user?.role === "ADMIN" ? (
+				<Link href={"/admin"}>
+					<li
+						className={
+							"md:hover:bg-primary md:hover:text-primary-content"
+						}
+					>
+						<a>
+							<MdAdminPanelSettings className={" text-2xl"} />
+							Admin
+						</a>
+					</li>
+				</Link>
+			) : null}
 		</>
 	);
 }

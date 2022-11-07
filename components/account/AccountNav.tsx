@@ -19,6 +19,7 @@ export default function AccountNav({}: Props) {
 	const router = useRouter();
 	const handleLogout = () => {
 		deleteCookie("Ptoken")
+		localStorage.setItem("Ptoken","")
 		if (!getCookie("Ptoken")) {
 			toast.success(`Logged out successfully`, {
 				theme:

@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import VendorTableItem from './VendorTableItem'
 
 type Props = {}
 
 export default function VendorTable({}: Props) {
+  useEffect(() => {
+
+  }, [])
+  
   return (
     <div className="overflow-x-auto ">
 			<table className=" w-full border-collapse ">

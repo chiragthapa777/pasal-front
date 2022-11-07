@@ -9,7 +9,8 @@ function ProductCard(props: any) {
 		router.push(`/product/${product.id}`)
 	}
 	return (
-		<div className="card rounded-md w-full bg-base-100 shadow-lg cursor-pointer border border-base-content/10 hover:scale-105 hover:duration-500 hover:shadow-xl" >
+		<div className="card rounded-md w-full bg-base-100 shadow-lg cursor-pointer border border-base-content/10 hover:scale-105
+		 hover:duration-500 hover:shadow-xl" >
 			<figure className="" onClick={handleLink}>
 				<img
 					src={
@@ -18,7 +19,7 @@ function ProductCard(props: any) {
 							: `https://placeimg.com/400/225/arch`
 					}
 					alt={product.name}
-					className="rounded-sm w-full h-[250px] object-cover"
+					className="rounded-sm w-full h-[250px] object-cover "
 				/>
 			</figure >
 			<div className="card-body items-center text-center p-2 w-full">

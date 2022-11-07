@@ -1,9 +1,15 @@
 import React from "react";
+import { OrderItems } from "../../../utils/types/orderitem";
 import OrderItem from "./OrderItem";
 
-type Props = {};
 
-export default function OrderItemList({}: Props) {
+
+type Props = {
+	orderItems : OrderItems[]
+	loading : boolean
+};
+
+export default function OrderItemList({orderItems, loading}: Props) {
 	return (
 		<div className="overflow-x-auto ">
 			<table className=" w-full border-collapse ">
