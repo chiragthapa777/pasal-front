@@ -1,5 +1,5 @@
 
-export interface OrderItems {
+export interface OrderItemType {
     id:                 number;
     createdAt:          Date;
     updatedAt:          Date;

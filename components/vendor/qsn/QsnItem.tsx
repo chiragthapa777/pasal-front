@@ -5,23 +5,25 @@ import QsnModal from "./QsnModal";
 
 type Props = {};
 
-export default function QsnItem({}: Props) {
+export default function QsnItem({qsn, seterror, setqsn, index, qsns}: any) {
 	return (
 		<tr className=" hover:bg-base-200 cursor-pointer even:bg-base-200/40 odd:bg-base-100">
-			<th className="border p-2">1</th>
-			<td className="border p-2 text-center max-w-[380px]">
-				Laudantium eaque necessitatibus iure, mollitia dolore voluptate.
-				Consequuntur vel voluptates ducimus hic at enim autem??
+			<th className="border-b p-2">{index+1}</th>
+			<td className="border-b p-2 max-w-[250px]">
+				{qsn?.product?.name}
 			</td>
-			<td className="border p-2 text-center">
-				<input type="checkbox" checked={false} className="checkbox" />
+			<td className="border-b p-2 max-w-[380px]">
+				{qsn?.question}
 			</td>
-			<td className="border p-2 text-center">Chirag Thapa</td>
-			<td className="border p-2 text-center">
-				{moment("2022-10-22T12:01:25.263Z").format("YYYY-MM-DD")}
+			<td className="border-b p-2 text-center">
+				<input type="checkbox" checked={qsn.answered} className="checkbox checkbox-success" />
 			</td>
-			<td className="border p-2 text-center">
-				<QsnModal />
+			<td className="border-b p-2 text-center">{qsn?.user?.name}</td>
+			<td className="border-b p-2 text-center">
+				{moment(qsn.createdAt).format("YYYY-MM-DD")}
+			</td>
+			<td className="border-b p-2 text-center">
+				<QsnModal setqsn={setqsn} q={qsn} qsns={qsns} />
 			</td>
 		</tr>
 	);

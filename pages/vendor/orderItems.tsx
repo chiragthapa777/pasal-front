@@ -48,7 +48,7 @@ export default function orderItems({}: Props) {
 				<h1 className="p-1 font-bold text-base-content/80 text-xl border-b uppercase">
 					Order Items
 				</h1>
-				<OrderItemList loading={loading} orderItems={orderitems} />
+				<OrderItemList loading={loading} orderItems={orderitems} seterror={seterror} setorderitems={setorderitems} />
 			</div>
 		</>
 	);

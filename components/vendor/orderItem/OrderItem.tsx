@@ -1,33 +1,45 @@
 import commaNumber from "comma-number";
 import moment from "moment";
 import React from "react";
+import { OrderItemType } from "../../../utils/types/orderitem";
 import OrderModal from "./OrderModal";
 
-type Props = {};
+type Props = {
+	orderItem: OrderItemType;
+	index: number;
+	seterror:any
+	orderItems : OrderItemType[]
+	setorderitems:any
+};
 
-export default function OrderItem({}: Props) {
+export default function OrderItem({ orderItem, index, seterror, orderItems, setorderitems }: Props) {
 	return (
 		<tr className=" hover:bg-base-200 cursor-pointer even:bg-base-200/40 odd:bg-base-100">
-			<th className="border p-2">1</th>
-			<td className="border p-2 text-center">PLACED</td>
-			<td className="border p-2 ">
-				<img
-					src="https://images.pexels.com/photos/5190599/pexels-photo-5190599.jpeg?auto=compress&cs=tinysrgb&w=600"
-					className="h-12 w-12 object-cover mx-auto"
-					alt=""
-				/>
+			<th className="border-b p-2">{index + 1}</th>
+			<td className={`border-b p-2 text-center font-bold ${orderItem.status==="PLACED"?"text-error":'text-success'}`}>{orderItem.status}</td>
+			<th className="border-b p-2 text-left">{orderItem.product.name}</th>
+			<th className="border-b p-2 text-center">{orderItem.quantity}</th>
+			<td className="border-b p-2 text-center">
+				{commaNumber(orderItem.rate)}
 			</td>
-			<th className="border p-2 text-center">Pant</th>
-			<th className="border p-2 text-center">2</th>
-			<td className="border p-2 text-center">{commaNumber(1200)}</td>
-			<td className="border p-2 text-center">{commaNumber(100)}(10%)</td>
-			<td className="border p-2 text-center">{commaNumber(120)}(13%)</td>
-			<td className="border p-2 text-center">{commaNumber(1200)}</td>
-			<td className="border p-2 text-center">
-				{moment("2022-10-22T12:01:25.263Z").format("YYYY-MM-DD")}
+			<td className="border-b p-2 text-center">
+				{commaNumber(orderItem.discount)}
+				{orderItem?.discountPercent
+					? `(${orderItem.discountPercent}%)`
+					: ""}
 			</td>
-			<td className="border p-2 text-center">
-				<OrderModal />
+			<td className="border-b p-2 text-center">
+				{commaNumber(orderItem.vat)}
+				{orderItem?.vatPercent ? `(${orderItem.vatPercent}%)` : ""}
+			</td>
+			<td className="border-b p-2 text-center">
+				{commaNumber(orderItem.grandTotal)}
+			</td>
+			<td className="border-b p-2 text-center">
+				{moment(orderItem.createdAt).format("YYYY-MM-DD")}
+			</td>
+			<td className="border-b p-2 text-center">
+				<OrderModal orderItem={orderItem} seterror={seterror} orderItems={orderItems} setorderitems={setorderitems} />
 			</td>
 		</tr>
 	);
