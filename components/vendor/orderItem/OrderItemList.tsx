@@ -22,6 +22,9 @@ export default function OrderItemList({ orderItems, loading, seterror, setorderi
 							Name
 						</th>
 						<th className="border-b py-3 px-2 bg-base-200">
+							Order
+						</th>
+						<th className="border-b py-3 px-2 bg-base-200">
 							Quantity
 						</th>
 						<th className="border-b py-3 px-2 bg-base-200">Rate</th>

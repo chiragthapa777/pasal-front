@@ -18,6 +18,7 @@ export default function OrderItem({ orderItem, index, seterror, orderItems, seto
 			<th className="border-b p-2">{index + 1}</th>
 			<td className={`border-b p-2 text-center font-bold ${orderItem.status==="PLACED"?"text-error":'text-success'}`}>{orderItem.status}</td>
 			<th className="border-b p-2 text-left">{orderItem.product.name}</th>
+			<th className="border-b p-2 text-center underline ">#{orderItem.orderId}</th>
 			<th className="border-b p-2 text-center">{orderItem.quantity}</th>
 			<td className="border-b p-2 text-center">
 				{commaNumber(orderItem.rate)}

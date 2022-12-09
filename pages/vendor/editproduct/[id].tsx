@@ -14,6 +14,7 @@ import { getCookie } from "cookies-next";
 import Loader from "../../../components/helper/Loader";
 import { useRouter } from "next/router";
 import { Product } from "../../../utils/types/product";
+import {FcAddImage} from "react-icons/fc";
 
 type Props = {};
 
@@ -31,6 +32,7 @@ export default function editproduct({}: Props) {
 	const [prodductLoading, setProductLoading] = useState<Boolean>(false);
 	const [product, setproduct] = useState<any>({});
 	const [loadingsubmit, setLoadingsubmit] = useState(false);
+	const [active, setactive] = useState(false)
 
 	const loadProductDetail = async () => {
 		try {
@@ -51,6 +53,7 @@ export default function editproduct({}: Props) {
 				price: res?.data?.data?.price,
 				quantity: res?.data?.data?.quantity,
 			});
+			setactive(res?.data?.data?.active || false)
 			setdesc(res?.data?.data?.desc || "");
 			seturl(res?.data?.data?.images[0]?.url || "");
 		} catch (error: any) {
@@ -76,6 +79,7 @@ export default function editproduct({}: Props) {
 			desc,
 			images,
 			tags: selectedTags.map((tag: any) => tag.name),
+			active
 		};
 		console.log(body)
 		setLoadingsubmit(true);
@@ -219,7 +223,7 @@ export default function editproduct({}: Props) {
 					) : (
 						<>
 							<div className="w-full py-4">
-								<div className="w-full flex justify-between">
+								<div className={`w-full flex justify-between ${url ? "" : "my-4"}`}>
 									<div className="w-[48%] mx-auto">
 										<Input
 											value={formik.values.name}
@@ -316,11 +320,20 @@ export default function editproduct({}: Props) {
 												type="file"
 												accept=".png, .jpg, .jpeg"
 												onChange={onImageChange}
+												className={"file-input w-full border border-gray-300 my-1"}
 											/>
 											<label className="label">
 												<span className="label-text-alt text-info">
 													jpeg, png
 												</span>
+											</label>
+										</div>
+										<div className="form-control">
+											<label className="cursor-pointer label">
+												<span className="label-text">Active</span>
+												<input type="checkbox" checked={active} onChange={()=>{
+													setactive(!active)
+												}} className="checkbox checkbox-success" />
 											</label>
 										</div>
 									</div>
@@ -340,10 +353,15 @@ export default function editproduct({}: Props) {
 												/>
 											</div>
 										) : (
-											<label htmlFor="productImage">Add a image</label>
+											<div className={`h-full w-full`}><label className="cursor-pointer rounded-full" htmlFor="productImage"><FcAddImage className="text-3xl" /></label>
+												<div className={`h-full w-full border border-base-300 rounded-xl mt-4 bg-base-200/10 border-dashed border-2 flex justify-center items-center`}>
+													<img src="sgsgd" alt="Add Image"/>
+												</div>
+											</div>
 										)}
 									</div>
 								</div>
+
 								<div className="w-full p-2 ">
 									<h3 className="text-sm p-2">Description</h3>
 									<ReactQuill

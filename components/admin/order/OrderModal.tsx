@@ -1,10 +1,46 @@
-import React,{useState} from "react";
+import React, {useContext, useState} from "react";
 import OrderDetail from "../../helper/OrderDetail";
+import {toast} from "react-toastify";
+import useAxios from "../../../hooks/useAxios";
+import {getCookie} from "cookies-next";
+import {baseUrl} from "../../../api/apiUrl";
+import OrderContext from "../../../contexts/OrderContext";
 
-type Props = {};
-
-export default function OrderModal({}: Props) {
+export default function OrderModal({order}: any) {
+	const { setOrders, loading:orderListLoading, orders } = useContext(OrderContext);
 	const [open, setopen] = useState(false)
+	const [status, setStatus] = useState<string>(order.status)
+	const [loading, setLoading] = useState<boolean>(false);
+	const handleUpdate = async() =>{
+		try {
+			const axios = useAxios(getCookie("Ptoken"))
+			setLoading(true)
+			const res = await axios.put(`${baseUrl}/order/${order.id}`,{status})
+			const data = res?.data?.data || {}
+			setOrders(orders.map((order:any)=>{
+				if(order.id===data.id){
+					return data
+				}else {
+					return order
+				}
+			}))
+			toast.success("Order updated successfully", {
+				theme:
+					window.localStorage.getItem("lightMode") === "true"
+						? "light"
+						: "dark",
+			});
+			setLoading(false)
+		}catch (e:any) {
+			setLoading(false)
+			toast.error(e?.response?.data?.data||e?.message || "Could not update order", {
+				theme:
+					window.localStorage.getItem("lightMode") === "true"
+						? "light"
+						: "dark",
+			});
+		}
+	}
 	return (
 		<>
 			<label htmlFor="my-modal-3" className="btn btn-sm btn-info mx-1" onClick={()=>{setopen(!open)}}>
@@ -13,7 +49,7 @@ export default function OrderModal({}: Props) {
 
 			<input type="checkbox" id="my-modal-3" className="modal-toggle" checked={open} disabled />
 			<div className="modal">
-				<div className="modal-box relative text-left  w-11/12 max-w-5xl">
+				<div className="modal-box relative text-left  w-11/12 max-w-7xl">
 					<label
 						htmlFor="my-modal-3"
 						className="btn btn-sm btn-circle absolute right-2 top-2 btn-error "
@@ -26,62 +62,32 @@ export default function OrderModal({}: Props) {
 						<span className="link text-green-500">#23</span>)
 					</h1>
 					<div className="w-full py-4 px-1">
-						<div className="collapse">
+						<div className="collapse collapse-arrow">
 							<input type="checkbox" className="peer" />
 							<div className="collapse-title bg-primary text-primary-content ">
 								Order Detail
 							</div>
 							<div className="collapse-content border w-full ">
-								<OrderDetail />
+								<OrderDetail order={order} />
 							</div>
 						</div>
 					</div>
-					<div className="form-control w-full max-w-xs">
+					<div className="form-control w-full my-4">
 						<label className="label">
 							<span className="label-text">
-								What is your name?
+								Status
 							</span>
 						</label>
-						<input
-							type="text"
-							placeholder="Type here"
-							className="input input-bordered w-full max-w-xs"
-						/>
-						<label className="label">
-							<span className="label-text-alt">Alt label</span>
-						</label>
+						<select className="select select-bordered" value={status} onChange={(e)=>setStatus(e.target.value)}>
+							<option disabled selected>Pick one</option>
+							<option >PLACED</option>
+							<option>PROCESSING</option>
+							<option>WAREHOUSED</option>
+							<option>DELIVERING</option>
+							<option>COMPLETED</option>
+						</select>
 					</div>
-					<div className="form-control w-full max-w-xs">
-						<label className="label">
-							<span className="label-text">
-								What is your name?
-							</span>
-						</label>
-						<input
-							type="text"
-							placeholder="Type here"
-							className="input input-bordered w-full max-w-xs"
-						/>
-						<label className="label">
-							<span className="label-text-alt">Alt label</span>
-						</label>
-					</div>
-					<div className="form-control w-full max-w-xs">
-						<label className="label">
-							<span className="label-text">
-								What is your name?
-							</span>
-						</label>
-						<input
-							type="text"
-							placeholder="Type here"
-							className="input input-bordered w-full max-w-xs"
-						/>
-						<label className="label">
-							<span className="label-text-alt">Alt label</span>
-						</label>
-					</div>
-					<button className="btn btn-primary">Update</button>
+					<button className={`btn btn-primary ${loading||orderListLoading?'loading':''}`} onClick={handleUpdate}>Update</button>
 				</div>
 			</div>
 		</>

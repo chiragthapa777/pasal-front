@@ -21,7 +21,6 @@ export default function Itemlist() {
 		const token: any = localStorage.getItem("Ptoken");
 		if(token){
 			const user: any = jwtDecode(token);
-			console.log(user)
 			setuser(user);
 		}
 	}, []);

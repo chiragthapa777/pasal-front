@@ -2,10 +2,13 @@ import jwtDecode from "jwt-decode";
 import React, { useState } from "react";
 import { baseUrl } from "../../../api/apiUrl";
 import useAxios from "../../../hooks/useAxios";
+import Input from "../../helper/formElements/Input";
+import {toast} from "react-toastify";
 
 type Props = {};
 
 export default function QsnModal({ setqsn, q, qsns }: any) {
+	console.log("Qsn modal render")
 	const [ans, setans] = useState("");
 	const [open, setOpen] = useState(false)
 	const [loading, setLoading] = useState(false)
@@ -15,20 +18,37 @@ export default function QsnModal({ setqsn, q, qsns }: any) {
 			const token:any = localStorage.getItem("Ptoken")
 			const axios = useAxios(token)
 			const user:any = jwtDecode(token)
-			const response = await axios.put(`${baseUrl}/order/${orderItem.id}/items`,{status})
+			if(ans===""){
+				setLoading(false)
+				return toast.error(
+					`Answer cannot be empty`,
+					{
+						theme:
+							window.localStorage.getItem("lightMode") === "true"
+								? "light"
+								: "dark",
+					}
+				);
+			}
+			const response = await axios.post(`${baseUrl}/question/${q.id}/answer`,{answer:ans})
 			const data = response?.data ?.data
-			console.log(data, orderItems)
-			setqsn(orderItems.map((orderItem:OrderItemType)=>{
-				if(orderItem?.id===data?.id){
-					return data || orderItem
-				}else{
-					return orderItem
+			setqsn(qsns.map((qsn:any)=>{
+				if(qsn.id === q.id){
+					const answers = qsn?.asnwers ? [...qsn.asnwers] : []
+					answers.push(data)
+					return{
+						...qsn,
+						answered:true,
+						answers
+					}
+				}else {
+					return qsn
 				}
 			}))
 			setLoading(false)
 			setOpen(false)
 			toast.success(
-				`Order #${data.id} updated successfully`,
+				`Question #${q.id} updated successfully`,
 				{
 					theme:
 						window.localStorage.getItem("lightMode") === "true"
@@ -49,7 +69,7 @@ export default function QsnModal({ setqsn, q, qsns }: any) {
 							: "dark",
 				}
 			);
-			
+
 		}
 	}
 	return (
@@ -58,7 +78,7 @@ export default function QsnModal({ setqsn, q, qsns }: any) {
 				Answer
 			</label>
 
-			<input type="checkbox" id="my-modal-3" className="modal-toggle" checked={open} />
+			<input type="checkbox" id="my-modal-3" className="modal-toggle" checked={open} readOnly/>
 			<div className="modal">
 				<div className="modal-box relative text-left">
 					<label

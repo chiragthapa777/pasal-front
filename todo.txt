@@ -7,3 +7,15 @@ api integration with backend 10hr
 
 add qsn
 add review
+
+make a utility class for checking if the user in loggedin and the role of the user, make a hook
+
+Today for show purpose -:
+1. vendor in admin page crud ()
+2. payment crud in admin page ()
+3. tag in admin page ()
+4. all product in dashborad ()
+5. add to cart  ()
+6. favorite ()
+7. place order and order list ()
+8. apply for vendor ()

@@ -67,7 +67,7 @@ export default function addproduct({}: Props) {
 
 	/**
 	 * This is a funciton to upload image
-	 * @param e 
+	 * @param e
 	 */
 	const onImageChange = async (e: any) => {
 		const data = new FormData();
@@ -103,7 +103,7 @@ export default function addproduct({}: Props) {
 	};
 
 	/**
-	 *This is a function to load tags from server 
+	 *This is a function to load tags from server
 	 */
 	const getTags = async () => {
 		try {
@@ -178,7 +178,7 @@ export default function addproduct({}: Props) {
 						Add Product
 					</h1>
 					<div className="w-full py-4">
-						<div className="w-full flex justify-between">
+						<div className={`w-full flex justify-between ${url ? "" : "my-4"}`}>
 							<div className="w-[48%] mx-auto">
 								<Input
 									value={formik.values.name}
@@ -274,6 +274,7 @@ export default function addproduct({}: Props) {
 										type="file"
 										accept=".png, .jpg, .jpeg"
 										onChange={onImageChange}
+										className={`file-input w-full border border-gray-300 my-1`}
 									/>
 									<label className="label">
 										<span className="label-text-alt text-info">
@@ -298,7 +299,11 @@ export default function addproduct({}: Props) {
 										/>
 									</div>
 								) : (
-									<label className="cursor-pointer rounded-full" htmlFor="productImage"><FcAddImage className="text-3xl" /></label>
+									<div className={`h-full w-full`}><label className="cursor-pointer rounded-full" htmlFor="productImage"><FcAddImage className="text-3xl" /></label>
+										<div className={`h-full w-full border border-base-300 rounded-xl mt-4 bg-base-200/10 border-dashed border-2 flex justify-center items-center`}>
+											<img src="sgsgd" alt="Add Image"/>
+										</div>
+									</div>
 								)}
 							</div>
 						</div>

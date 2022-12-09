@@ -1,5 +1,6 @@
 import { configureStore, ThunkAction } from "@reduxjs/toolkit";
 import profileReducer from "./slice/profile";
+import authSlice from "./slice/authSlice";
 import { Action } from "redux";
 import { createWrapper } from "next-redux-wrapper";
 
@@ -7,6 +8,7 @@ const makeStore = () =>
   configureStore({
     reducer: {
       profile: profileReducer,
+      auth: authSlice
     },
     devTools: true,
   });

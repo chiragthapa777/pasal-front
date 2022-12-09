@@ -5,9 +5,10 @@ import commaNumber from "comma-number";
 import Link from "next/link";
 import { MdHomeFilled, MdShoppingCart } from "react-icons/md";
 import { useRouter } from "next/router";
-import Swal from "sweetalert2";
+
 
 export default function cart() {
+
 	const router = useRouter();
 	const handleCheckout = () => {
 		router.push("/checkout/shipping")
