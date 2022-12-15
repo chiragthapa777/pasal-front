@@ -21,8 +21,8 @@ export default function Layout({ children,theme, settheme }: any) {
 	// }, []);
 	return (
 		<div
-			className="font-mono min-h-screen flex flex-col justify-between overflow-x-hidden"
-			data-theme={theme ? "light" : "dark"}
+			className=" min-h-screen flex flex-col justify-between overflow-x-hidden"
+			data-theme={theme ? "pastelCustom" : "dark"}
 		>
 			<Head>
 				<title>पसल - muiltivendor ecommerce</title>

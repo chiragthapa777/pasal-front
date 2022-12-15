@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps, ...appProps }: AppProps) {
 		}
 	}, []);
 	return (
-		<div data-theme={theme ? "light" : "dark"}>
+		<div data-theme={theme ? "pastelCustom" : "dark"}>
 			<Head>
 				<title>पसल - muiltivendor ecommerce</title>
 				<meta property="og:title" content="My page title" key="title" />

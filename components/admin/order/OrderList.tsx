@@ -10,7 +10,7 @@ export default function OrderList({}: Props) {
 
 	return (
 		<div className="overflow-x-auto ">
-			<table className=" w-full border-collapse border ">
+			<table className=" w-full border-collapse  ">
 				<thead>
 					<tr className="">
 						<th className="border-b py-3 px-2 bg-base-200 text-left">SN </th>
@@ -29,6 +29,9 @@ export default function OrderList({}: Props) {
 						<th className="border-b py-3 px-2 bg-base-200 text-left">
 							Grand Total
 						</th>
+						<th className="border-b py-3 px-2 bg-base-200 text-left">
+							Paid
+						</th>
 						<th className="border-b py-3 px-2 bg-base-200 text-left">Date</th>
 						<th className="border-b py-3 px-2 bg-base-200 text-left">Action</th>
 					</tr>
@@ -36,14 +39,14 @@ export default function OrderList({}: Props) {
 				<tbody>
 					{loading ? (
 						<tr className=" hover:bg-base-200 cursor-pointer even:bg-base-200/40 ">
-							<td colSpan={10} className="text-center border">
+							<td colSpan={11} className="text-center border">
 								<Loader />
 							</td>
 						</tr>
 					) : orders.length > 0 ? (
 						orders.map((order: any, index:number) => <OrderItem key={order.id} index={index} order={order} />)
 					) : (
-						<td colSpan={10} className="text-center border p-2">
+						<td colSpan={11} className="text-center border p-2">
 							No orders
 						</td>
 					)}

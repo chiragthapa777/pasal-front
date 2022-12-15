@@ -19,7 +19,11 @@ const getInstance = (token:any) => {
     return axiosApiInstance
 }
 
-export default function useAxios(token:any) {
-    console.log()
-    return getInstance(token)
+export default function useAxios(token?:any) {
+    if(token){
+        return getInstance(token)
+    }else{
+        // return getInstance("")
+        return getInstance(getCookie("Ptoken"))
+    }
 }

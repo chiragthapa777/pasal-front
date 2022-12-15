@@ -10,7 +10,7 @@ export default function PaymentForm({}: Props) {
     }
 	return (
 		<div className="py-2 w-full ">
-			<div className="flex flex-col items-center">
+			<div className="">
 				<div className="form-control w-full max-w-xs">
 					<label className="label">
 						<span className="label-text">OrderId</span>

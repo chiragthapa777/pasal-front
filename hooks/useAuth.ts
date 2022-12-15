@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode';
 
 interface AuthInterface {
     roles ?: string[],
-    redirectPath ?: URL,
+    redirectPath ?: string,
     setError: any
 }
 

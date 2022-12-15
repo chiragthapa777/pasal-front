@@ -13,11 +13,11 @@ type Props = {};
 
 export default function index({}: Props) {
 
-	useAuth({roles:['ADMIN']})
 
 	const [orders, setOrders]=useState<any>([])
 	const [loading, setloading]=useState(false)
 	const [error, seterror]=useState("")
+	useAuth({roles:['ADMIN'], redirectPath:'/login',setError:seterror})
 
 	if(error!==""){
 		return <Error message={error} />

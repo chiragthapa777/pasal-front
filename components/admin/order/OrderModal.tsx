@@ -1,16 +1,23 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import OrderDetail from "../../helper/OrderDetail";
 import {toast} from "react-toastify";
 import useAxios from "../../../hooks/useAxios";
 import {getCookie} from "cookies-next";
 import {baseUrl} from "../../../api/apiUrl";
 import OrderContext from "../../../contexts/OrderContext";
+import PaymentModal from "./PaymentModel";
+import jwtDecode from "jwt-decode";
 
 export default function OrderModal({order}: any) {
 	const { setOrders, loading:orderListLoading, orders } = useContext(OrderContext);
 	const [open, setopen] = useState(false)
 	const [status, setStatus] = useState<string>(order.status)
 	const [loading, setLoading] = useState<boolean>(false);
+	const [detail, setDetail] = useState<{order:any,error:string,loading:boolean}>({
+		order:order,
+		loading:false,
+		error:''
+	});
 	const handleUpdate = async() =>{
 		try {
 			const axios = useAxios(getCookie("Ptoken"))
@@ -41,6 +48,22 @@ export default function OrderModal({order}: any) {
 			});
 		}
 	}
+	useEffect(() => {
+		if(open){
+			handleDetailFetch()
+		}
+	}, [open]);
+
+	const handleDetailFetch= async () =>{
+		try {
+			const axios = useAxios()
+			setDetail({...detail,loading: true})
+			const response:any = await axios.get(`${baseUrl}/order/${order.id}`)
+			setDetail({order:response?.data?.data || {},loading: false, error:''})
+		} catch (error:any) {
+			setDetail({...detail,loading: false,error:error?.message})
+		}
+	}
 	return (
 		<>
 			<label htmlFor="my-modal-3" className="btn btn-sm btn-info mx-1" onClick={()=>{setopen(!open)}}>
@@ -68,10 +91,11 @@ export default function OrderModal({order}: any) {
 								Order Detail
 							</div>
 							<div className="collapse-content border w-full ">
-								<OrderDetail order={order} />
+								<OrderDetail order={detail.order} loading={detail.loading} error={detail.error} />
 							</div>
 						</div>
 					</div>
+
 					<div className="form-control w-full my-4">
 						<label className="label">
 							<span className="label-text">

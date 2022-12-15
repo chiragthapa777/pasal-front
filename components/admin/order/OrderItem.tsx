@@ -2,6 +2,7 @@ import commaNumber from 'comma-number'
 import moment from 'moment'
 import React from 'react'
 import OrderModal from './OrderModal'
+import PaymentModal from "./PaymentModel";
 
 type Props = {
 	order:any
@@ -30,17 +31,21 @@ export default function OrderItem({order, index}: Props) {
     <tr className={` hover:bg-blue-100 cursor-pointer ${colorSwitcher(order.status)||'even:bg-base-200/40 odd:bg-base-100'}`}>
 			<th className="border-b p-2">{index+1}</th>
 			<td className="border-b p-2  font-bold">{order.status}</td>
-			<td className="border-b p-2 ">{order.user.name}</td>
+			<td className="border-b p-2 ">{order?.user?.name}</td>
 			<td className="border-b p-2 ">{commaNumber(order.total)}</td>
 			<td className="border-b p-2 ">{commaNumber(order.discount)}</td>
 			<td className="border-b p-2 ">{commaNumber(order.vat)}</td>
 			<td className="border-b p-2 ">{commaNumber(order.otherCharge)}</td>
 			<td className="border-b p-2 ">{commaNumber(order.grandTotal)}</td>
 			<td className="border-b p-2 ">
+				<input type="checkbox" readOnly={true} checked={order.isPaid} className="checkbox checkbox-success" />
+			</td>
+			<td className="border-b p-2 ">
 				{moment(order.createdAt).format("YYYY-MM-DD")}
 			</td>
 			<td className="border-b p-2">
 				<OrderModal order={order} />
+				<PaymentModal order ={order}/>
 			</td>
 		</tr>
   )
