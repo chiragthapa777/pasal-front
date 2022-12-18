@@ -11,9 +11,9 @@ add review
 make a utility class for checking if the user in loggedin and the role of the user, make a hook
 
 Today for show purpose -:
-1. vendor in admin page crud ()
-2. payment crud in admin page ()
-3. tag in admin page ()
+1. vendor in admin page crud (done)
+2. payment crud in admin page (done)
+3. tag in admin page (doing)
 4. all product in dashborad ()
 5. add to cart  ()
 6. favorite ()

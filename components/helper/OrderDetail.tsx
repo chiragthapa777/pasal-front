@@ -5,7 +5,7 @@ import Loader from "./Loader";
 
 type Props = {};
 export default function OrderDetail({order, error, loading}: any) {
-    let sn =0
+    let sn = 0
     return (
         <div className="border p-2 rounded-md my-5 bg-base-200/20 drop-shadow-lg ">
             <h1 className="text-2xl font-bold text-center my-8">

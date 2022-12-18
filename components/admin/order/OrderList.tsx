@@ -46,9 +46,11 @@ export default function OrderList({}: Props) {
 					) : orders.length > 0 ? (
 						orders.map((order: any, index:number) => <OrderItem key={order.id} index={index} order={order} />)
 					) : (
+						<tr className=" hover:bg-base-200 cursor-pointer even:bg-base-200/40 ">
 						<td colSpan={11} className="text-center border p-2">
 							No orders
 						</td>
+						</tr>
 					)}
 				</tbody>
 			</table>

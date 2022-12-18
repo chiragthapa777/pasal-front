@@ -20,16 +20,16 @@ export const ProfileSlice = createSlice({
         }
     },
     extraReducers:{
-        [HYDRATE] : (state, action)=>{
-            // TODO - handle client side state override
-            //when has getserverside props
-            console.log('hydrate',action.payload)
-            if(!action.payload.profile.name){
-                return state
-            }
-            
-            state.name=action.payload.profile.name
-        }
+        // [HYDRATE] : (state, action)=>{
+        //     // TODO - handle client side state override
+        //     //when has getserverside props
+        //     console.log('hydrate',action.payload)
+        //     if(!action.payload.profile.name){
+        //         return state
+        //     }
+        //
+        //     state.name=action.payload.profile.name
+        // }
     }
 })
 

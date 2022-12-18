@@ -21,6 +21,7 @@ const ProductById: NextPage = ({ data, error }: any) => {
 		return <Error message={error} />;
 	}
 	return (
+
 		<div className={""} ref={topRef}>
 			<ProductDetail product={product} setproduct={setproduct} />
 			<ProductDescription product={product} setproduct={setproduct} />
