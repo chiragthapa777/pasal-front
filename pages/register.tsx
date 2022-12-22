@@ -1,5 +1,5 @@
 import { getCookie, setCookie } from "cookies-next";
-import React, { useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import { baseUrl } from "../api/apiUrl";
 import useAxios from "../hooks/useAxios";
 import { toast } from "react-toastify";
@@ -10,12 +10,10 @@ import Link from "next/link";
 type Props = {};
 
 export default function register({}: Props) {
-	const topRef: any = useRef(null);
 	const axios = useAxios(getCookie("Ptoken"));
 	const router = useRouter();
 
 	useEffect(() => {
-		topRef.current.scrollIntoView({ behavior: "auto" });
 	}, []);
 
 	const handleRegister = (val: any) => {
@@ -96,7 +94,7 @@ export default function register({}: Props) {
 		},
 	});
 	return (
-		<div className="hero min-h-screen bg-base-200" ref={topRef}>
+		<div className="hero min-h-screen bg-base-200">
 			<div className="hero-content flex-col lg:flex-row-reverse">
 				<div className="text-center lg:text-left">
 				<h1 className="text-5xl font-bold text-primary">

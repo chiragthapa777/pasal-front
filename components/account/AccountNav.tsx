@@ -12,14 +12,20 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { getCookie, setCookie, deleteCookie } from 'cookies-next';
+import {setLogout} from "../../store/slice/authSlice";
+import {useDispatch} from "react-redux";
 
 type Props = {};
 
 export default function AccountNav({}: Props) {
 	const router = useRouter();
+	const dispatch = useDispatch()
 	const handleLogout = () => {
 		deleteCookie("Ptoken")
 		localStorage.setItem("Ptoken","")
+		console.log("press garyoo logout")
+		// @ts-ignore
+		dispatch(setLogout())
 		if (!getCookie("Ptoken")) {
 			toast.success(`Logged out successfully`, {
 				theme:

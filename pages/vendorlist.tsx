@@ -81,7 +81,7 @@ export default function vendorlist({error,data}:Props) {
 				</div>
 			</div>
 			<div className="my-4 mx-2">
-				<div className="container mx-auto lg:w-5/6 flex items-center justify-center flex-col px-2">
+				<div className="container mx-auto lg:w-5/6  flex-col px-2">
 					<div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
 						{data.length>0 ? data.map((vendor:any)=><VendorCard key={vendor.id} vendor={vendor} />):"Cannot find any vendor"}
 					</div>

@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useEffect, useRef, useState } from "react";
+import { useEffect,  useState } from "react";
 import ProductDetail from "../../components/productPageComponent/ProductDetail";
 import ProductReviewSection from "../../components/productPageComponent/ProductReviewSection";
 import ProductDescription from "../../components/productPageComponent/ProductDescription";
@@ -12,9 +12,7 @@ import Error from "../../components/helper/Error";
 const ProductById: NextPage = ({ data, error }: any) => {
 	const [product, setproduct] = useState(data);
 	console.log(product)
-	const topRef: any = useRef(null);
 	useEffect(() => {
-		topRef.current.scrollIntoView({ behavior: "auto" });
 	}, []);
 
 	if (error !== "") {
@@ -22,7 +20,7 @@ const ProductById: NextPage = ({ data, error }: any) => {
 	}
 	return (
 
-		<div className={""} ref={topRef}>
+		<div className={""} >
 			<ProductDetail product={product} setproduct={setproduct} />
 			<ProductDescription product={product} setproduct={setproduct} />
 			<ProductReviewSection product={product} setproduct={setproduct} />

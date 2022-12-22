@@ -13,9 +13,9 @@ make a utility class for checking if the user in loggedin and the role of the us
 Today for show purpose -:
 1. vendor in admin page crud (done)
 2. payment crud in admin page (done)
-3. tag in admin page (doing)
+3. tag in admin page (done)
+5. add to cart  (doing)
 4. all product in dashborad ()
-5. add to cart  ()
 6. favorite ()
 7. place order and order list ()
 8. apply for vendor ()
