@@ -20,7 +20,6 @@ export default function register({}: Props) {
 		axios
 			.post(`${baseUrl}/auth/register`, val)
 			.then((res) => {
-				console.log(res);
 				toast.success(
 					`Successfully created account ${res.data.data.name}`,
 					{

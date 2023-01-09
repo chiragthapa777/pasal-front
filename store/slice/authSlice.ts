@@ -14,15 +14,7 @@ type initStateType = {
     shippingLoading: boolean
 }
 
-const initialState: initStateType = {
-    user: null,
-    cart: null,
-    shipping: null,
-    error: "",
-    loading: false,
-    cartLoading: false,
-    shippingLoading: false
-}
+
 
 export const loadUser = createAsyncThunk(
     'auth/loadUser', async (parameter: any, {rejectWithValue}) => {
@@ -30,7 +22,6 @@ export const loadUser = createAsyncThunk(
             const axios = useAxios()
             // console.log("Parameters yesari aauxa", parameter)
             const data = await axios.get(`${baseUrl}/users/loggedin`)
-            console.log("data:", data)
             return data?.data?.data
         } catch (e: any) {
             // console.log(e)
@@ -51,7 +42,6 @@ export const addProductToCart = createAsyncThunk(
                     position: "bottom-left"
                 }
             );
-            console.log(data)
             return data?.data?.data
         } catch (e: any) {
             console.log(e)
@@ -80,7 +70,6 @@ export const removeCartProduct = createAsyncThunk(
                     position: "bottom-left"
                 }
             );
-            console.log(data)
             return data?.data?.data
         } catch (e: any) {
             console.log(e)
@@ -109,12 +98,38 @@ export const editCartProduct = createAsyncThunk(
                     position: "bottom-left"
                 }
             );
-            console.log(data)
             return data?.data?.data
         } catch (e: any) {
             console.log(e)
             toast.error(
                 `${e?.response?.data?.data || 'Product was not updated'}`,
+                {
+                    theme:window.localStorage.getItem("lightMode") === "true"? "light": "dark",
+                    position: "bottom-left"
+                }
+            );
+            return rejectWithValue(e.response.data.data);
+        }
+    }
+)
+export const updateShippingAddress = createAsyncThunk(
+    'auth/updateShippingAddress', async (dataToUpdate: any, {rejectWithValue}) => {
+        try {
+            const axios = useAxios()
+            console.log("dataToUpdat : ",dataToUpdate)
+            const data = await axios.put(`${baseUrl}/shipping`,{...dataToUpdate})
+            toast.success(
+                `Shipping address updated successfully.`,
+                {
+                    theme:window.localStorage.getItem("lightMode") === "true"? "light": "dark",
+                    position: "bottom-left"
+                }
+            );
+            return data?.data?.data
+        } catch (e: any) {
+            console.log(e)
+            toast.error(
+                `${e?.response?.data?.data || 'Could not update shipping address.'}`,
                 {
                     theme:window.localStorage.getItem("lightMode") === "true"? "light": "dark",
                     position: "bottom-left"
@@ -130,8 +145,15 @@ export const editCartProduct = createAsyncThunk(
 // add remove edit item in cart
 // shipping address edit
 
-
-// @ts-ignore
+const initialState: initStateType = {
+    user: null,
+    cart: null,
+    shipping: null,
+    error: "",
+    loading: false,
+    cartLoading: false,
+    shippingLoading: false
+}
 // @ts-ignore
 const authSlice = createSlice({
     name: "auth",
@@ -141,9 +163,8 @@ const authSlice = createSlice({
             state = initialState
         },
         setLogout: (state, action) => {
-            localStorage.clear();
             state = initialState;
-            // loadUser('')
+            return state
         },
     },
     extraReducers: (builder) => {
@@ -173,7 +194,6 @@ const authSlice = createSlice({
             state.shipping = shipping
         })
         builder.addCase(loadUser.rejected, (state, action) => {
-            console.log(action)
             state.loading = false
             // @ts-ignore
             state.error = action.payload || ''
@@ -185,8 +205,11 @@ const authSlice = createSlice({
         })
         builder.addCase(addProductToCart.fulfilled, (state, action) => {
             state.cartLoading = false
+            if(!state.cart?.cartDetails){
+                state.cart.cartDetails = []
+            }
             // @ts-ignore
-            state.cart = {...state.cart, cartDetails:[...state.cart.cartDetails,action.payload]}
+            state.cart = {...state.cart, cartDetails:[...state.cart?.cartDetails,action.payload]}
         })
         builder.addCase(addProductToCart.rejected, (state, action) => {
             state.cartLoading = false
@@ -225,6 +248,20 @@ const authSlice = createSlice({
         })
         builder.addCase(editCartProduct.rejected, (state, action) => {
             state.cartLoading = false
+            // @ts-ignore
+            state.error = action.payload || ''
+        })
+        //updateShippingAddress product to cart
+        builder.addCase(updateShippingAddress.pending, (state, action) => {
+            state.shippingLoading = true
+        })
+        builder.addCase(updateShippingAddress.fulfilled, (state, action) => {
+            state.shippingLoading = false
+            // @ts-ignore
+            state.shipping = action.payload
+        }),
+        builder.addCase(updateShippingAddress.rejected, (state, action) => {
+            state.shippingLoading = false
             // @ts-ignore
             state.error = action.payload || ''
         })

@@ -36,7 +36,9 @@ export default function useAuth({roles, redirectPath, setError}:AuthInterface) {
             if(redirectPath){
                 router.push(redirectPath)
             }else{
-                setError(error?.message)
+                if(setError){
+                    setError(error?.message)
+                }
             }
 
         }

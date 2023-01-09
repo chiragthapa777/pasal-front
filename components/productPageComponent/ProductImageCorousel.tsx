@@ -6,7 +6,6 @@ function ProductImageCorousel(props: any) {
     <div className="carousel w-full h-[400px] ">
       {imagesList.length > 0 ? (
         imagesList.map((image: any, index: number) => {
-            console.log(`#${index === imagesList.length - 1 ? 0 : index + 1}`)
             return(
           <div id={`slide${index}`} className="carousel-item relative w-full" key={image.id} >
             <img src={image.url} className="w-full object-scale-down" />

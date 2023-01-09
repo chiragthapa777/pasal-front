@@ -43,9 +43,6 @@ export default function index({}: Props) {
 
 	useEffect(()=>{
 		fetchOrders()
-		return(()=>{
-			console.log("Orders Unmounted")
-		})
 	},[])
 
 	return (

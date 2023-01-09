@@ -6,6 +6,7 @@ import {addProductToCart} from "../../store/slice/authSlice";
 import {useDispatch} from "react-redux";
 import {toast} from "react-toastify";
 import {useSelector} from "react-redux";
+import useAuth from "../../hooks/useAuth";
 
 function ProductCard(props: any) {
     const dispatch = useDispatch()
@@ -15,7 +16,22 @@ function ProductCard(props: any) {
     const handleLink = () => {
         router.push(`/product/${product.id}`)
     }
+    const {user} = useSelector((state:any)=>state.auth)
     const handleAddToCart = () => {
+        // useAuth({roles:[],setError:undefined,redirectPath:'/login'})
+        if(!user?.id){
+             toast.error(
+					`You have to login first.`,
+					{
+						theme:
+							window.localStorage.getItem("lightMode") === "true"
+								? "light"
+								: "dark",
+						position: "bottom-left",
+					}
+				);
+            router.push('/login')
+        }
         // @ts-ignore
         dispatch(addProductToCart({productId: product.id, quantity: 1, toast}))
     }

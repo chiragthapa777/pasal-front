@@ -25,7 +25,6 @@ export default function index({}: Props) {
 			const data = response?.data?.data || []
 			setTags(data)
 			setLoading(false)
-			console.log("Tags response : ", response)
 
 		} catch (e: any) {
 			console.log(e)
@@ -36,9 +35,6 @@ export default function index({}: Props) {
 
 	useEffect(() => {
 		fetchAllTags()
-		return () => {
-			console.log("Tag page destroyed.")
-		};
 	}, []);
 
 	if (error) {

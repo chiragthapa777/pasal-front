@@ -110,7 +110,6 @@ export default function addproduct({}: Props) {
 			setloading(true);
 			const tagRes: any = await axios.get(`${baseUrl}/tag`);
 			setloading(false);
-			console.log(tagRes.data.data);
 			setTags(tagRes.data.data);
 		} catch (error: any) {
 			setloading(false);

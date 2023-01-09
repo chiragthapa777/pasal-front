@@ -37,7 +37,6 @@ export default function shipping({ data, error }: any) {
 								? "light"
 								: "dark",
 					});
-					console.log(res);
 					data = res.data.data;
 					formik.setSubmitting(false)
 				})

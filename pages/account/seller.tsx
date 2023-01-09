@@ -31,6 +31,7 @@ export default function seller({data: data}: any) {
             pan: data?.pan || "",
         },
         onSubmit: (values) => {
+            console.log("Click")
             axios
                 .post(`${baseUrl}/vendor`, values)
                 .then((res) => {
@@ -40,7 +41,6 @@ export default function seller({data: data}: any) {
                                 ? "light"
                                 : "dark",
                     });
-                    console.log(res);
                     formik.setSubmitting(false);
                     data = res.data.data;
                 })

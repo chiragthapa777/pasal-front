@@ -9,16 +9,62 @@ import {
 	MdShoppingBasket,
 } from "react-icons/md";
 import Quantity from "../helper/Quantity";
-import { product } from "../../data";
 import ReactStars from "react-stars";
 import commaNumber from "comma-number";
 import Link from "next/link";
+import useAuth from "../../hooks/useAuth";
+import { addProductToCart } from "../../store/slice/authSlice";
+import authFunc from "../../utils/authFunc";
+import {useRouter} from "next/router";
+import {getCookie} from "cookies-next";
+import {toast} from "react-toastify";
+import {useDispatch} from "react-redux";
 
 function ProductDetail(props: any) {
 	const [quantity, setquantity] = useState(1);
-	const { product, setproduct } = props;
+	const { product, setproduct, auth:{user,cart} } = props;
 	const ratingChanged = (newRating: number) => {
-		console.log(newRating);
+	};
+	const router = useRouter()
+	const dispatch = useDispatch()
+
+	const addFunc = () =>{
+		setquantity(quantity + 1)
+	}
+
+	const subFunc = () =>{
+		setquantity(quantity - 1)
+	}
+
+	const checkIfInCart = () => {
+		if(cart?.cartDetails?.find((d:any)=>d.productId === product.id)){
+			return true
+		}else{
+			return false
+		}
+	}
+
+	const handleAddToCart = () => {
+		// useAuth({ roles: [], setError: undefined, redirectPath: "/login" });
+		if(authFunc(router,getCookie("Ptoken"),'/login',[],null)){
+			if(checkIfInCart()){
+				toast.success(`This item is already in cart.`,{
+					theme:window.localStorage.getItem("lightMode") === "true"? "light": "dark",
+					position: "bottom-left",
+				})
+			}else{
+				// @ts-ignore
+				dispatch(addProductToCart({ productId: product.id, quantity: 1, toast:undefined }));
+			}
+
+		}else{
+			toast.error(`You have to login first.`,{
+				theme:window.localStorage.getItem("lightMode") === "true"? "light": "dark",
+				position: "bottom-left"
+			}
+			);
+		}
+
 	};
 	return (
 		<div className={"container mx-auto lg:w-5/6"}>
@@ -104,11 +150,11 @@ function ProductDetail(props: any) {
 					<div className="flex gap-2">
 						<p className="my-auto">Quantity <span className="text-success">(stock : {product.quantity}) </span>:</p>
 
-						<Quantity max={product.quantity} min={1} />
+						<Quantity max={product.quantity} min={1} addFunc={addFunc} subFunc={subFunc} quantity = {quantity} />
 					</div>
 					<div className="my-2">
 						<div className="flex mb-2">
-							<button className="btn btn-primary btn-outline flex-1 mr-2">
+							<button className={`btn btn-primary btn-outline flex-1 mr-2 ${checkIfInCart()?`btn-disable btn-success`:''}`} onClick={handleAddToCart}>
 								<MdShoppingCart className="mr-2 text-2xl" />
 								<p className="text-lg">Add to cart</p>
 							</button>

@@ -1,5 +1,5 @@
 import commaNumber from 'comma-number';
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {HiHeart, HiTrash} from "react-icons/hi";
 import Quantity from '../helper/Quantity';
 import {noImageLink} from "../../utils/contants/links";
@@ -7,8 +7,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {editCartProduct, removeCartProduct} from "../../store/slice/authSlice";
 
 export default function CartItem({item}: any) {
-    const { cartLoading} = useSelector((state: any) => state.auth)
+    const { cartLoading, cart} = useSelector((state: any) => state.auth)
     const [quantity, setQuantity] = useState(item?.quantity||0);
+    const getSubTotal = () => {
+        return quantity*item?.product?.price
+    }
+    const [subtotal, setSubtotal] = useState(getSubTotal());
     const dispatch = useDispatch()
     const handleRemove = () => {
         if (!cartLoading) {
@@ -16,6 +20,11 @@ export default function CartItem({item}: any) {
             dispatch(removeCartProduct({productId: item.productId}))
         }
     }
+    useEffect(() => {
+        setSubtotal(getSubTotal())
+    }, [cart]);
+
+
     const increaseQty = () =>{
         // @ts-ignore
         dispatch(editCartProduct({productId:item.productId,quantity:item.quantity+1}))
@@ -53,7 +62,7 @@ export default function CartItem({item}: any) {
                 <div
                     className="btnGroup cursor-pointer border-t border-l border-r flex text-sm sm:text-md text-gray-400 items-center hover:bg-success hover:text-success-content">
                     <div className='p-1 '>Sub-Total :</div>
-                    <div className='p-1 '>{commaNumber(quantity*item?.product?.price)}</div>
+                    <div className='p-1 '>{commaNumber(subtotal)}</div>
                 </div>
             </section>
         </div>

@@ -93,7 +93,6 @@ export default function vendorlist({error,data}:Props) {
 
 export async function getServerSideProps({ req, res, query }: any) {
 	const { search } = query;
-	console.log(search);
 	const axios = useAxios();
 	let data: any = [];
 	let error: string = "";

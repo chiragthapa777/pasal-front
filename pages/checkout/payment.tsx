@@ -32,6 +32,7 @@ export default function payment({}: Props) {
 					</li>
 				</ul>
 			</div>
+
 			{/* steps */}
 			<div className="flex justify-center items-center w-full  flex-col">
 				<ul className="steps my-4">
@@ -48,13 +49,15 @@ export default function payment({}: Props) {
 						Confirmation
 					</li>
 				</ul>
+
 				<div className="w-full md:w-[70%] bg-base-100 drop-shadow-sm px-2 py-4 rounded-md">
 					<h1 className="p-1 font-bold text-base-content/80 text-xl border-b uppercase">
 						Payment Option
 					</h1>
-					<div className="orderSummary w-80 bg-base-100 drop-shadow-md rounded-sm mx-auto lg:w-[30%] my-3">
-						<OrderSummary/>
-					</div>
+					{/*<div className="orderSummary w-full bg-base-100 drop-shadow-md rounded-sm mx-auto lg:w-[30%] my-3">*/}
+					{/*	<OrderSummary/>*/}
+					{/*</div>*/}
+					<OrderSummary/>
 					<div className="form-control w-full">
 						<label className="label">
 							<span className="label-text uppercase">

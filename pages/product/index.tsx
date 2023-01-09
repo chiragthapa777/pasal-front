@@ -9,7 +9,6 @@ import {
 	MdSearch,
 } from "react-icons/md";
 
-import { productList } from "../../data";
 import Link from "next/link";
 import useAxios from "../../hooks/useAxios";
 import { baseUrl } from "../../api/apiUrl";

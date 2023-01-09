@@ -6,7 +6,6 @@ import QsnModal from "./QsnModal";
 type Props = {};
 
 export default function QsnItem({qsn, seterror, setqsn, index, qsns}: any) {
-	console.log("Qsn Item re-render")
 	return (
 		<tr className=" hover:bg-base-200 cursor-pointer even:bg-base-200/40 odd:bg-base-100">
 			<th className="border-b p-2">{index+1}</th>

@@ -1,20 +1,24 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
-import commaNumber from "comma-number"
+import commaNumber from "comma-number";
+import OrderDetail from "../helper/OrderDetail";
+import DetailModal from "./DetailModal";
+import { useRouter } from "next/router";
 
 type Props = {
 	order: any;
 };
 
 export default function OrderItem({ order }: Props) {
+	const router = useRouter();
+	const handleDetailPage = () => {
+		router.push(`/orderDetail/${order.id}`);
+	};
 	return (
 		<tr>
 			<th className="text-primary underline">
-				<Link
-					href={`/order/${order.id}`}
-					className=" link "
-				>{`#${order.id}`}</Link>
+				<p onClick={handleDetailPage} className={`cursor-pointer`}>#{order?.id}</p>
 			</th>
 			<td>{order.status}</td>
 			<td>

@@ -6,7 +6,6 @@ import QsnItem from "./QsnItem";
 import QsnModal from "./QsnModal";
 
 export default function QsnLists({ qsn, setqsn, seterror, loading }: any) {
-    console.log("QsnList re-render")
 	return (
 		<div className="overflow-x-auto ">
 			<table className=" w-full border-collapse border">

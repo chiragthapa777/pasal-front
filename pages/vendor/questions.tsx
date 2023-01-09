@@ -12,7 +12,6 @@ export default function questions({}: Props) {
 	const [loading, setLoading] = useState(false);
 	const [error, seterror] = useState("");
 
-	console.log("Question page re-render")
 
 	const fetchOrderItems = async () => {
 		try {
@@ -37,8 +36,8 @@ export default function questions({}: Props) {
   useEffect(() => {
     fetchOrderItems()
   }, [])
-  
-  
+
+
 
 	return (
 		<>

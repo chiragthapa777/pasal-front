@@ -81,7 +81,6 @@ export default function editproduct({}: Props) {
 			tags: selectedTags.map((tag: any) => tag.name),
 			active
 		};
-		console.log(body)
 		setLoadingsubmit(true);
 		axios
 			.put(`${baseUrl}/product/${product.id}`, body)
@@ -153,7 +152,6 @@ export default function editproduct({}: Props) {
 			setloading(true);
 			const tagRes: any = await axios.get(`${baseUrl}/tag`);
 			setloading(false);
-			console.log(tagRes.data.data);
 			setTags(tagRes.data.data);
 		} catch (error: any) {
 			setloading(false);

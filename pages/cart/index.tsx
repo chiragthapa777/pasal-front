@@ -56,7 +56,7 @@ export default function cart() {
                     </div>
                 </div>
                 <div className="orderSummary w-80 bg-base-100 drop-shadow-md rounded-sm mx-auto lg:w-[30%]">
-                    <OrderSummary/>
+                    <OrderSummary />
                 </div>
             </section>
             <div className="cartButtons flex justify-center m-2">
@@ -66,7 +66,7 @@ export default function cart() {
                     Checkout{" "}
                 </button>
             </div>
-            {cartLoading?<OverLayLoader text={'Please wait, updating cart'}/>:''}
+            {cartLoading?<OverLayLoader text={'Updating cart..'}/>:''}
 
         </div>
     );

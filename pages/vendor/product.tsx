@@ -17,7 +17,7 @@ export default function product({}: Props) {
 	const [loading, setloading] = useState(false)
 	const [error, seterror] = useState("")
 	const [products, setproducts] = useState<Product[]>([])
-	
+
 	const fetchProduct = async() => {
 		try {
 			const token:any = localStorage.getItem("Ptoken")
@@ -29,7 +29,6 @@ export default function product({}: Props) {
 			}
 			const response = await axios.get(`${baseUrl}/product/?vendorId=${user.vendorId}`)
 			setloading(false)
-			console.log(response)
 			setproducts(response?.data?.data || [])
 		} catch (error:any) {
 			setloading(false)
@@ -40,7 +39,7 @@ export default function product({}: Props) {
 	useEffect(() => {
 		fetchProduct()
 	}, [])
-	
+
 
     const handleAddProduct =()=>{
         router.push("addproduct")

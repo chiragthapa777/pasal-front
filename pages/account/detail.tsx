@@ -50,7 +50,6 @@ export default function detail({ data, error }: any) {
 									? "light"
 									: "dark",
 						});
-						console.log(res)
 						setloading(false);
 						data = res.data.data;
 					})

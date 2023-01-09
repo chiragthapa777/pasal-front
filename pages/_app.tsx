@@ -12,6 +12,7 @@ import {loadUser} from "../store/slice/authSlice";
 import useAxios from "../hooks/useAxios";
 import {useRouter} from "next/router";
 import OverLayLoader from "../components/helper/OverLayLoader";
+import Loader from "../components/helper/Loader";
 
 function MyApp({Component, pageProps, ...appProps}: AppProps) {
     const router = useRouter();
@@ -21,27 +22,24 @@ function MyApp({Component, pageProps, ...appProps}: AppProps) {
         curr: ''
     });
     const [theme, settheme] = useState(true);
-    const state: any = useSelector((state) => state)
+    const {auth} = useSelector((state: any) => state)
     const dispatch = useDispatch()
     const setPrevRoute = () => {
-        setRoutes({ ...routes,prev:appProps.router.pathname})
+        setRoutes({...routes, prev: appProps.router.pathname})
         router.events.on('routeChangeStart', (url: string) => {
-            console.log("routeChangeStart", url)
             setScreenLoading(true)
         });
         router.events.on('routeChangeComplete', (url: string) => {
-            console.log("routeChangeComplete", url)
-            setRoutes({ ...routes,curr:url})
+            setRoutes({...routes, curr: url})
             setScreenLoading(false)
         });
         router.events.on('routeChangeError', (err: any, url) => {
-            console.log("routeChangeError", err, url)
             setScreenLoading(false)
         });
     }
     const setLightMode = () => {
         const mode = window.localStorage.getItem("lightMode")
-        if(mode===null){
+        if (mode === null) {
             window.localStorage.setItem("lightMode", "true")
         }
     }
@@ -60,8 +58,6 @@ function MyApp({Component, pageProps, ...appProps}: AppProps) {
     }, []);
     useEffect(() => {
         setPrevRoute()
-        console.log("Route : ",routes)
-        console.log("appProps.router.pathname : ",appProps.router.pathname)
         if ([`/login`, `/register`].includes(routes.prev)) {
             // @ts-ignore
             dispatch(loadUser(''))
@@ -73,7 +69,7 @@ function MyApp({Component, pageProps, ...appProps}: AppProps) {
                 <title>पसल - muiltivendor ecommerce</title>
                 <meta property="og:title" content="My page title" key="nepali ecommerce"/>
             </Head>
-            <ToastContainer />
+            <ToastContainer/>
             <NextNProgress/>
             {/*{screenLoading?<OverLayLoader text={`Loading...`}/>:null}*/}
 
@@ -82,7 +78,11 @@ function MyApp({Component, pageProps, ...appProps}: AppProps) {
                     <Component {...pageProps} />
                 ) : (
                     <Layout theme={theme} settheme={settheme}>
-                        <Component {...pageProps} />
+                        {auth?.loading ? <div className={`w-full h-full flex justify-center items-center`}>
+                                <Loader/>
+                            </div> :
+                            <Component {...pageProps} />
+                        }
                     </Layout>
                 )}
         </div>

@@ -12,9 +12,6 @@ type Props = {
 
 export default function ProductItem({ product, index }: Props) {
 	const router = useRouter()
-	const handleSelect = () => {
-		console.log("select");
-	};
 	const handleView = (id:any) => {
 		router.push(`/vendor/editproduct/${id}`)
 	}

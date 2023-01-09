@@ -27,7 +27,6 @@ export default function login({}: Props) {
         axios
             .post(`${baseUrl}/auth/login`, val)
             .then((res) => {
-                console.log(res);
                 toast.success(
                     `Successfully logged in as ${res.data.data.name}`,
                     {
@@ -166,7 +165,6 @@ export async function getServerSideProps({req, res}: any) {
     // getCookie('test', { req, res });
     // getCookies({ req, res });
     // deleteCookie('test', { req, res });
-    console.log(getCookie("Ptoken", {req, res}));
     return {
         props: {},
     };

@@ -4,7 +4,6 @@ import { getCookie } from 'cookies-next'
 // Add a request interceptor
 export const interceptor=()=>{
   const token = getCookie("Ptoken")
-  console.log("interceptinggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg")
     axios.interceptors.request.use(
       (config:any) => {
         if (token) {

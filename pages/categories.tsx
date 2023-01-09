@@ -92,7 +92,6 @@ export default function categories({ data, error }: Props) {
 
 export async function getServerSideProps({ req, res,query }: any) {
 	const {search}=query
-	console.log(search)
 	const axios = useAxios();
 	let data: any = [];
 	let error: string = "";

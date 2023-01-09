@@ -1,16 +1,56 @@
 import commaNumber from 'comma-number'
 import Link from 'next/link'
-import React from 'react'
+import React,{useState} from 'react'
 import {HiLocationMarker} from 'react-icons/hi'
 import {MdCheckCircle, MdHomeFilled, MdOfflinePin} from 'react-icons/md'
 import {useRouter} from 'next/router'
+import OrderSummary from "../../components/OrderSummary";
+import useAxios from "../../hooks/useAxios";
+import {baseUrl} from "../../api/apiUrl";
+import {toast} from "react-toastify";
+import {getCookie} from "cookies-next";
+import jwt_decode from "jwt-decode";
+import {useSelector} from "react-redux";
 
 type Props = {}
 
 export default function confirmation({}: Props) {
     const router = useRouter()
-    const handleConfirm = () => {
-        router.push("/account/order")
+    const {user} = useSelector((s:any)=>s.auth)
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    const handleConfirm = async() => {
+        try{
+            setLoading(true)
+            const axios = useAxios()
+            const token: any = getCookie("Ptoken");
+            const data = await axios.post(`${baseUrl}/order/byCart`,{
+                userId:user.id,
+                clearCart:true
+            })
+            toast.success(
+                `Order added successfully.`,
+                {
+                    theme:window.localStorage.getItem("lightMode") === "true"? "light": "dark",
+                    position: "bottom-left"
+                }
+            );
+            setLoading(false)
+            router.push("/account/order")
+        }catch (e:any){
+            setLoading(false)
+            toast.error(
+                `${e?.response?.data?.data || 'Could not add order.'}`,
+                {
+                    theme:window.localStorage.getItem("lightMode") === "true"? "light": "dark",
+                    position: "bottom-left"
+                }
+            );
+            setError(e?.response?.data?.data)
+        }
+
+
+
     }
     return (
         <div className={"accountCss lg:max-w-[1200px] container mx-auto p-1"}>
@@ -70,44 +110,19 @@ export default function confirmation({}: Props) {
                         <h1 className='underline text-lg font-bold'>Payment</h1>
                         <p>Cash On Delivery</p>
                     </div>
-                    <div className='border-b'>
-                        <h1 className='underline text-lg font-bold'>Shipping Address</h1>
-                        <div className="w-full px-2 py-1 flex justify-between">
-                            <p className="">Total (Selected 2 items)</p>
-                            <p className="font-bold">
-                                {" "}
-                                Rs. {commaNumber(12000)}
-                            </p>
-                        </div>
-                        <div className="w-full px-2 py-1 flex justify-between">
-                            <p className="">Discount</p>
-                            <p className="font-bold"> Rs. {commaNumber(300)}</p>
-                        </div>
-                        <div className="w-full px-2 py-1 flex justify-between">
-                            <p className="">Vat</p>
-                            <p className="font-bold">Rs. {commaNumber(1000)}</p>
-                        </div>
-                        <div className="w-full px-2 py-1 flex justify-between border-b">
-                            <p className="">Delivery (Lalitpur)</p>
-                            <p className="font-bold"> Rs. {commaNumber(100)}</p>
-                        </div>
-                        <div className="w-full px-2 py-2 flex justify-between text-2xl font-extrabold bg-base-200/50">
-                            <p className="">Total Payable</p>
-                            <p className="font-bold">
-                                {" "}
-                                Rs. {commaNumber(13000)}
-                            </p>
-                        </div>
+                    <div className={`mt-3`}>
+
+                        <OrderSummary/>
                     </div>
 
                     <div className="flex justify-end">
-                        <button className="btn btn-sm mt-3 btn-error">
+                        <button className="btn btn-sm mt-3 btn-error"  disabled={loading}>
                             <Link href={"/checkout/payment"}>
                                 Back
                             </Link>
 
                         </button>
-                        <button className="btn btn-sm mt-3 btn-info ml-2" onClick={handleConfirm}>
+                        <button className={`btn btn-sm mt-3 btn-info ml-2 ${loading ? 'loading':''}`} onClick={handleConfirm} disabled={loading}>
                             Confirm
                         </button>
                     </div>

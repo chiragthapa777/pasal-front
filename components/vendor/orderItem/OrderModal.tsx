@@ -25,10 +25,8 @@ export default function OrderModal({orderItem, seterror, orderItems, setorderite
 			if(!user?.vendorId){
 				return seterror("Cannot find the vendor")
 			}
-			console.log(status)
 			const response = await axios.put(`${baseUrl}/order/${orderItem.id}/items`,{status})
 			const data = response?.data ?.data
-			console.log(data, orderItems)
 			setorderitems(orderItems.map((orderItem:OrderItemType)=>{
 				if(orderItem?.id===data?.id){
 					return data || orderItem
@@ -60,7 +58,7 @@ export default function OrderModal({orderItem, seterror, orderItems, setorderite
 							: "dark",
 				}
 			);
-			
+
 		}
 	}
 	return (

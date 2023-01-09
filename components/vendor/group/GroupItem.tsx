@@ -6,7 +6,6 @@ type Props = {};
 
 export default function GroupItem({}: Props) {
 	const handleSelect = () => {
-		console.log("select");
 	};
 	return (
 		<tr className=" hover:bg-base-200 cursor-pointer even:bg-base-200/40 odd:bg-base-100">

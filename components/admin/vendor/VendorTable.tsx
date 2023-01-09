@@ -8,7 +8,6 @@ type Props = {}
 
 export default function VendorTable({}: Props) {
     const {vendors, loading} = useContext(AdminVendorContext);
-    console.log(loading)
     useEffect(() => {
 
   }, [])

@@ -8,7 +8,6 @@ import {toast} from "react-toastify";
 type Props = {};
 
 export default function QsnModal({ setqsn, q, qsns }: any) {
-	console.log("Qsn modal render")
 	const [ans, setans] = useState("");
 	const [open, setOpen] = useState(false)
 	const [loading, setLoading] = useState(false)
